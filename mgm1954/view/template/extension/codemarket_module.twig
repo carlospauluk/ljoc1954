@@ -1,0 +1,73 @@
+{{ header }}
+<link href="view/javascript/codemarketPainel/summernote/dist/summernote.css" rel="stylesheet" />
+<link href="view/javascript/codemarketPainel/summernote/dist/summernote-bs3.css" rel="stylesheet" />
+<script type="text/javascript" src="view/javascript/codemarketPainel/summernote/dist/summernote.min.js"></script>
+{{ column_left }}
+<!-- PROIBIDO MODIFICAR ESTE ARQUIVO -->
+<div id="content">
+    <div class="page-header">
+    <div class="container-fluid">
+    {% if cliente is empty %}
+    <div class="col-sm-5">
+    <h3><a href = "http://www.codemarket.com.br">Ativar Token Geral - Code Market</a></h3>
+    <form id="vg_form">
+    <div class="form-group">
+    <label for="email">E-mail</label>
+    <input type="email" class="form-control" name="codemarket_val_email" placeholder="Seu E-mail na Code Market">
+    </div>
+    <div class="form-group">
+    <label for="token">Token Geral</label>
+    <input type="password" class="form-control" name="codemarket_val_token" placeholder="Seu Token Geral na Code Market">
+    </div>
+    <button style ="margin-bottom:16px;" type="submit" id="vg_botao" class="btn btn-success">Validar</button>
+    </form>
+    </div>       
+    <script>
+    $("#vg_botao" ).on( "click", function(e) {
+    e.preventDefault();
+
+    var dados = $('#vg_form').serialize();
+    $.ajax({
+        type: "POST",
+        data: dados,
+        url: "{{validar}}",       
+        success: function (data) {
+            console.log(data);
+            if(data == 1) {
+                alert("Validação aprovada, atualizando página");
+                location.reload(); 
+            }else {
+                alert("Verifique se informou corretamente o E-mail e Token!")
+            }
+        }
+        });
+    });
+    </script>
+    {% endif %}
+
+{% if dom is not empty and email is not empty and cliente is not empty %}
+
+<div id='carregar'>Carregando...</div>
+<script src="view/javascript/jquery.validate.js" type="text/javascript"></script>
+<script>    
+$.ajax({
+type: "POST",
+data: {dom: "{{dom}}", email: "{{email}}",token: "{{cliente}}",url_ticket: "{{url_ticket}}",url_cache: "{{url_cache}}",
+      usuario_id: "{{usuario_id}}",grupo_nome: "{{grupo_nome}}",grupo_id: "{{grupo_id}}"},
+url: "{{code_modulos}}",       
+})
+.done(function(conteudo) {
+$('#carregar').html(conteudo);
+});
+</script>
+{% endif %}
+</div>
+</div>
+</div>
+
+<style type="text/css">
+    span.hidden-xs, span.hidden-sm, span.hidden-md, span.hidden-lg {
+    display: inline !important;
+}
+</style>
+{{ footer }} 

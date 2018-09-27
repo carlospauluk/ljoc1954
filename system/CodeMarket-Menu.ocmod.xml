@@ -1,0 +1,28 @@
+<modification>
+    <name><![CDATA[<font color="#00a99d"><b>Code Market - Menu</b></font>]]></name>
+	<code><![CDATA[Code Market - Menu]]></code>
+	<version><![CDATA[1.1]]></version>
+	<author><![CDATA[<font color="#00a99d"><b>Code Market - codemarket.com.br</b></font>]]></author>
+	<link>http://www.codemarket.com.br</link>
+    
+    <file path="admin/controller/common/column_left.php">
+		<operation>
+			<search>
+				<![CDATA[$marketplace = array();
+				]]>
+			</search>
+			<add position="after">
+				<![CDATA[
+					if ($this->user->hasPermission('access', 'extension/codemarket_module')) {
+						$marketplace[] = array(
+						'name'     => 'Code Market - Módulos',
+						'href'     => $this->url->link('extension/codemarket_module', 'user_token=' . $this->session->data['user_token'], true),
+						'children' => array(),
+						);
+					}
+
+				]]>
+			</add>
+		</operation>
+	</file>
+</modification>
