@@ -1,0 +1,61 @@
+{% if c441_cb11 is not empty %}
+    <div class="well well-sm">
+    <div id="aviso_pagamento"></div>
+      {{c441_cb11}}
+    </div>
+{% endif %}
+
+<div class="buttons">
+  <div class="pull-right">
+    <input type="button" value="{{c441_cb7}}" id="button-confirm" class="btn btn-primary" data-loading-text="{{text_wait}}"/>
+  </div>
+</div>
+<script src="https://assets.pagar.me/checkout/1.1.0/checkout.js"></script>
+
+<script>
+    $(document).ready(function() {
+        $('#button-confirm').on('click', function() {
+            var checkout = new PagarMeCheckout.Checkout({"encryption_key":"{{c441key}}", success: function(data) {
+                //console.log(data);            
+                payment_method = data.payment_method;
+                amount = data.amount;
+                installments = data.installments;
+                card_hash = data.card_hash;
+
+                $.ajax({ 
+                    type: 'POST',
+                    url: "{{url}}",
+                    data: { payment_method: payment_method, amount: amount, installments: installments, card_hash:card_hash},
+                    cache: false, 
+                    beforeSend: function() {
+                        $("#button-confirm").button('loading');
+                    },
+                    success: function(data2) {                        
+                        if(data2 == ""){
+                            location = '{{sucesso}}';
+                        }else {
+                            $("#aviso_pagamento").html(data2);
+                        }
+                    }       
+                });
+            }});
+
+            var params = {
+                "customerData":"false",
+                "createToken": "false",
+                "amount":"{{c441total}}",
+                "buttonText":"{{c441_cb7}}",
+                "creditCardHelperText":"{{c441_cb6}}",
+                "boletoHelperText":"{{c441_cb5}}",
+                "boletoDiscountAmount":"{{c441_ca12}}",
+                "uiColor":"{{c441_cb10}}",
+                "paymentMethods":"{{c441pagamentos}}",
+                "maxInstallments":"{{c441_ca6}}",
+                "freeInstallments":"{{c441_ca7}}",
+                "defaultInstallment":"1",
+                "interestRate":"{{c441_ca5}}"
+            };
+            checkout.open(params);
+        });
+    });
+</script>

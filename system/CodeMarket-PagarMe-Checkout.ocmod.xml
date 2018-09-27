@@ -1,0 +1,150 @@
+<modification>
+    <name><![CDATA[<font color="#00a99d"><b>Code Market - Checkout Pagar.me</b></font>]]></name>
+    <code><![CDATA[Code Market - Checkout Pagar.me]]></code>
+    <version><![CDATA[1.4]]></version>
+    <author><![CDATA[<font color="#00a99d"><b>Code Market - codemarket.com.br</b></font>]]></author>
+    <link>http://www.codemarket.com.br</link>  
+    
+    <file path="admin/model/setting/extension.php">
+        <operation>
+            <search><![CDATA[
+                public function uninstall($type, $code) {
+            ]]></search>
+            <add position="after"><![CDATA[
+                    if($code == 'codemarket_pagarme'){
+                        return false;
+                    }
+            ]]></add>
+        </operation>
+    </file>
+
+    <file path="admin/model/setting/event.php">
+        <operation>
+            <search><![CDATA[public function uninstall($type, $code) {
+            ]]></search>
+            <add position="after"><![CDATA[
+                if($code == 'codemarket_pagarme'){
+                    return false;
+                }
+            ]]></add>
+        </operation>
+    </file>
+
+    <file path="admin/controller/extension/codemarket_module.php">
+        <operation>
+            <search><![CDATA[$data['dom']          = HTTP_CATALOG;
+]]></search>
+            <add  position="before"><![CDATA[
+                $this->load->model('module/codemarket_module');
+                $c441 = $this->model_module_codemarket_module->getModulo('441');
+
+                $query441 = $this->db->query("SELECT code FROM " . DB_PREFIX . "extension WHERE `code` = '" . $this->db->escape('codemarket_pagarme') . "' LIMIT 1");
+
+                if(!isset($query441->row['code'])){
+                    $this->db->query("INSERT INTO " . DB_PREFIX . "extension SET `type` = '" . $this->db->escape('payment') . "', `code` = '" . $this->db->escape('codemarket_pagarme') . "'");
+                }
+
+                $c441cd3 = array('payment_codemarket_pagarme_status' => 0);
+                if(isset($c441->cd3) and $c441->cd3 == 1){
+                    $c441cd3 = array('payment_codemarket_pagarme_status' => 1);
+                }
+                $this->model_setting_setting->editSetting('payment_codemarket_pagarme', $c441cd3); 
+
+                $query441 = $this->db->query("SHOW COLUMNS FROM `" . DB_PREFIX . "order` LIKE 'pagarme_order_id'");
+                if (!$query441->num_rows) {
+                    $this->db->query("ALTER TABLE `" . DB_PREFIX . "order` ADD (`pagarme_order_id` int )");
+                }
+            ]]></add>
+        </operation>
+    </file>
+
+   <file path="catalog/controller/checkout/success.php">
+        <operation>
+            <search><![CDATA[$this->response->setOutput($this->load->view('common/success', $data));
+]]></search>
+            <add position="before"><![CDATA[
+                if (isset($this->session->data['code_pagarme_id'])) {
+                    $c441id = $this->session->data['code_pagarme_id'];
+                    unset($this->session->data['code_pagarme_id']);
+
+                    require_once DIR_SYSTEM . 'library/pagarme/Pagarme.php';
+                    $this->load->model('module/codemarket_module');
+
+                    $conf441 = $this->model_module_codemarket_module->getModulo('441');
+
+                    if (!empty($conf441->ca1)) {
+                        $c441api = $conf441->ca1;
+                    }
+
+                    if (!empty($conf441->ca3) and $conf441->cc2 == 1) {
+                        $c441api = $conf441->ca3;
+                    }
+
+                    Pagarme::setApiKey($c441api);
+                    $c441transaction = PagarMe_Transaction::findById($c441id);
+
+                    if (isset($c441transaction->status)) {
+                        $data['c441status'] = 4;
+                        switch ($c441transaction->status) {
+                            case 'authorized':
+                                $data['c441status'] = 1;
+                                break;
+                            case 'paid':
+                                $data['c441status'] = 2;
+                                break;
+                            case 'refused':
+                                $data['c441status'] = 3;
+                                break;
+                        }
+                    }
+                }elseif (isset($this->session->data['code_pagarme_boleto'])) {
+                    $data['code_pagarme_boleto'] = $this->session->data['code_pagarme_boleto'];
+                    unset($this->session->data['code_pagarme_boleto']);
+                }
+            ]]></add>
+        </operation>
+    </file>
+    
+    <file path="catalog/view/theme/*/template/common/success.twig">
+        <operation>
+            <search><![CDATA[<h1>{{ heading_title }}</h1>
+]]></search>
+            <add position="replace"><![CDATA[
+                <style>
+                .c441c {
+                  text-align: center;
+                  font-size:17px;
+                }
+
+                .c441red{
+                    color: #EC4242;
+                }
+                </style>
+
+                {% if code_pagarme_boleto is not empty %}
+                    <h1 class="text-success">Pedido criado com sucesso</h1>
+                    <h3 class="c441red">Pague o Boleto para confirmar o Pagamento e o Pedido</h3>
+                    <span class="c441c">Use este Código de Barras para Pagamento no Bankline:<br>
+                    {{code_pagarme_boleto.barcode}}<br>
+                    Ou clique em Abrir Boleto, pode ser Pago pelo Bankline ou direto no Caixa do Banco
+                    </span><br><br>
+                    {{code_pagarme_boleto.link}}
+                    <br><br>
+                    <span class="c441c">Após pago, leva na média 2 dias úteis para ser confirmado e o Pedido é automaticamente confirmado</span><br><br>
+                {% elseif c441status %}
+                    {% if c441status == 1 or c441status == 4 %}
+                        <h1 class="text-success">Pedido criado com sucesso</h1> 
+                        <h3>Verifique em Pedidos ou aguarde um e-mail informando a confirmação do pagamento, o mesmo encontra-se em Análise</h3>
+                    {% elseif c441status == 2 %}
+                        <h1 class="text-success">Pedido criado com sucesso<br>Pagamento Aprovado</h1> 
+                    {% elseif c441status == 3 %}
+                        <h1 class="text-success">Seu Pedido foi criado com sucesso</h1> 
+                        <h3 class="c441red">O Pagamento não foi aprovado, tente fazer outro Pedido</h3>
+                    {% endif %} 
+                {% else %} 
+                     <h1>{{ heading_title }}</h1>
+                {% endif %} 
+            ]]></add>
+        </operation>
+    </file>
+</modification>
