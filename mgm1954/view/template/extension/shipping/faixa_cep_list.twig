@@ -1,0 +1,113 @@
+<div class="table-responsive">
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <td class="text-left">{{ column_descricao }}</td>
+      <td class="text-left">{{ column_inicial }}</td>
+      <td class="text-left">{{ column_final }}</td>
+      <td class="text-left">{{ column_minimo }}</td>
+      <td class="text-left">{{ column_maximo }}</td>
+      <td class="text-left">{{ column_total }}</td>
+      <td class="text-left">{{ column_preco }}</td>
+      <td style="width: 180px;" class="text-left">{{ column_action }}</td>
+    </tr>
+  </thead>
+  <tbody>
+    {% if faixas %}
+    {% for faixa in faixas %}
+    <tr>
+      <td class="text-left">{{ faixa.descricao }}</td>
+      <td class="text-left">{{ faixa.cep_inicial }}</td>
+      <td class="text-left">{{ faixa.cep_final }}</td>
+      <td class="text-left">{{ faixa.peso_minimo }}</td>
+      <td class="text-left">{{ faixa.peso_maximo }}</td>
+      <td class="text-left">{{ faixa.total_minimo }}</td>
+      <td class="text-left">{{ faixa.preco }}</td>
+      <td class="text-left">
+        <button type="button" id="{{ faixa.faixa_cep_id }}" name="button-edit" data-loading-text="{{ text_aguarde }}" class="btn btn-primary"><i class="fa fa-pencil-square-o"></i> {{ button_edit }}</button>
+        <button type="button" id="{{ faixa.faixa_cep_id }}" name="button-delete" data-loading-text="{{ text_aguarde }}" class="btn btn-danger"><i class="fa fa-trash"></i> {{ button_delete }}</button>
+      </td>
+    </tr>
+    {% endfor %}
+    {% else %}
+    <tr>
+      <td class="text-center" colspan="8">{{ text_no_results }}</td>
+    </tr>
+    {% endif %}
+  </tbody>
+</table>
+</div>
+<div class="row">
+  <div class="col-sm-6 text-left">{{ pagination }}</div>
+  <div class="col-sm-6 text-right">{{ results }}</div>
+</div>
+<script type="text/javascript"><!--
+  $('button[name=\'button-edit\']').on('click', function() {
+    $('.alert').remove();
+    var botao = $(this);
+    var currentId = $(this).attr('id');
+    $.ajax({
+      url: 'index.php?route=extension/shipping/faixa_cep/edit&user_token={{ user_token }}&id='+currentId,
+      dataType: 'json',
+      beforeSend: function() {
+        $('#dados').before('<div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i> {{ text_aguarde }} <img src="view/image/ajax-loader.gif" alt="" /><button type="button" class="close" data-dismiss="alert">&times;</button></div>');
+        botao.button('loading');
+        $("input").prop("disabled", true);
+        $("button").prop("disabled", true);
+        $('html, body').animate({ scrollTop: 0 }, 'slow');
+      },
+      success: function(json) {
+        if (json['success']) {
+          $('html, body').animate({ scrollTop: 0 }, 'slow');
+          $('.alert').remove();
+          botao.button('reset');
+          $("input").prop("disabled", false);
+          $("button").prop("disabled", false);
+          $('#dados input[name=\'descricao\']').val(json['descricao']);
+          $('#dados input[name=\'inicial\']').val(json['inicial']);
+          $('#dados input[name=\'final\']').val(json['final']);
+          $('#dados input[name=\'minimo\']').val(json['minimo']);
+          $('#dados input[name=\'maximo\']').val(json['maximo']);
+          $('#dados input[name=\'total\']').val(json['total']);
+          $('#dados input[name=\'preco\']').val(json['preco']);
+          $('button[name=\'button-save\']').before('<input type="hidden" name="id" value="' + json['id'] + '" />');
+        }
+      },
+      error: function(xhr, ajaxOptions, thrownError) {
+        alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+      }
+    });
+  });
+
+  $('button[name=\'button-delete\']').on('click', function() {
+    $('.alert').remove();
+    var botao = $(this);
+    var currentId = $(this).attr('id');
+    $.ajax({
+      url: 'index.php?route=extension/shipping/faixa_cep/delete&user_token={{ user_token }}&id='+currentId,
+      dataType: 'json',
+      beforeSend: function() {
+        $('#lista').before('<div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i> {{ text_aguarde }} <img src="view/image/ajax-loader.gif" alt="" /><button type="button" class="close" data-dismiss="alert">&times;</button></div>');
+        botao.button('loading');
+        $("input").prop("disabled", true);
+        $("button").prop("disabled", true);
+        $('html, body').animate({ scrollTop: 0 }, 'slow');
+      },
+      success: function(json) {
+        if (json['success']) {
+          $('#faixas').load('index.php?route=extension/shipping/faixa_cep/faixas&user_token={{ user_token }}', function() {
+            $('html, body').animate({ scrollTop: 0 }, 'slow');
+            $('.alert').remove();
+            botao.button('reset');
+            $("input").prop("disabled", false);
+            $("button").prop("disabled", false);
+            $('#lista').before('<div class="alert alert-success"><i class="fa fa-check-circle"></i> ' + json['success'] + ' <button type="button" class="close" data-dismiss="alert">&times;</button></div>');
+          });
+        }
+      },
+      error: function(xhr, ajaxOptions, thrownError) {
+        alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+      }
+    });
+  });
+//--></script>
