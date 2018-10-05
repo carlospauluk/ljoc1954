@@ -36,6 +36,12 @@ class ModelExtensionShippingFaixaCep extends Model {
                     $frete = 0.00;
 
                     $i = 0;
+
+                    function cmp($a, $b) {
+                        return floatval($a['total_minimo']) <= floatval($b['total_minimo']);
+                    }
+                    usort($faixas_cep,"cmp");
+
                     foreach ($faixas_cep as $faixa) {
                         $cep_inicial = preg_replace('/[^0-9]/', '', $faixa['cep_inicial']);
                         $cep_final = preg_replace('/[^0-9]/', '', $faixa['cep_final']);
@@ -74,6 +80,7 @@ class ModelExtensionShippingFaixaCep extends Model {
                                     'tax_class_id' => $tax_class_id,
                                     'text' => $text
                                 );
+                                break; // Somente adiciono uma opção de frete
                             }
                         }
                     $i++;
@@ -118,7 +125,9 @@ class ModelExtensionShippingFaixaCep extends Model {
     }
 
     public function getFaixasCep($cep) {
-        $qry = $this->db->query("SELECT * FROM `" . DB_PREFIX . "faixa_cep` WHERE `cep_inicial` <= '" . $this->db->escape($cep) . "' AND `cep_final` >= '" . $this->db->escape($cep) . "'");
+        $sql = "SELECT * FROM `" . DB_PREFIX . "faixa_cep` WHERE `cep_inicial` <= '" . $this->db->escape($cep) . "' AND `cep_final` >= '" . $this->db->escape($cep) . "'";
+        // $sql .= " ORDER BY total_minimo DESC";
+        $qry = $this->db->query($sql);
 
         if ($qry->num_rows) {
             return $qry->rows;
