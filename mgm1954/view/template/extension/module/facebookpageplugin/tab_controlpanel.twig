@@ -1,0 +1,179 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3">
+            <h5><strong><span class="required">* </span>{{ entry_code_module }}</strong></h5>
+            <span class="help"><i class="fa fa-info-circle"></i>&nbsp;{{ entry_code_module_help }}</span>
+        </div>
+        <div class="col-md-3">
+            <input type="text" name="name" value="{{ name }}" placeholder="Enter your FacebookPagePlugin module name" class="form-control number" />
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-md-3">
+            <h5><strong><span class="required">* </span>{{ text_status }}</strong></h5>
+            <span class="help"><i class="fa fa-info-circle"></i>&nbsp;{{ text_status_help }}</span>
+        </div>
+        <div class="col-md-3">
+            <select id="Checker" name="status" class="form-control">
+                {% if (status) %}
+                <option value="1" selected="selected">{{ text_enabled }}</option>
+                <option value="0">{{ text_disabled }}</option>
+                {% else %}
+                <option value="1">{{ text_enabled }}</option>
+                <option value="0" selected="selected">{{ text_disabled }}</option>
+                {% endif %}
+            </select>
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-md-3">
+            <h5><strong><span class="required">* </span>{{ text_panel_name }}</strong></h5>
+            <span class="help"><i class="fa fa-info-circle"></i>&nbsp;{{ text_panel_name_help }}</span>
+        </div>
+        <div class="col-md-3">
+            {% for language in languages %}
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><img src="{{ language['flag_url'] }}" title="{{ language['name'] }}"></span>
+                    <input type="text" class="form-control" name="{{ moduleNameSmall }}[PanelName][{{ language['language_id'] }}]" value="{{ (moduleData['PanelName'][language['language_id']] is defined) ? moduleData['PanelName'][language['language_id']] : '' }}" />
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-md-3">
+            <h5><strong><span class="required">* </span>{{ text_facebookpageplugin_url }}</strong></h5>
+            <span class="help"><i class="fa fa-info-circle"></i>&nbsp;{{ text_facebookpageplugin_url_help }}</span>
+        </div>
+        <div class="col-md-3">
+            <input type="text" name="{{ moduleNameSmall }}[FacebookPageURL]" value="{{ (moduleData['FacebookPageURL'] is defined) ? moduleData['FacebookPageURL'] : '' }}" placeholder="Enter your Facebook page URL" class="form-control number" />
+        </div>
+    </div>
+    <br />
+	<div class="row">
+        <div class="col-md-3">
+            <h5><strong><span class="required">* </span>{{ text_module_dimensions }}</strong></h5>
+            <span class="help"><i class="fa fa-info-circle"></i>&nbsp;{{ text_module_dimensions_help }}</span>
+        </div>
+        <div class="col-md-9">
+             <div class="col-xs-4">
+                <div class="input-group">
+                  <span class="input-group-addon">Width:&nbsp;</span>
+                  <input type="text" class="form-control" name="{{ moduleNameSmall }}[Width]" value="{{ (moduleData['Width'] is not empty) ? moduleData['Width'] : '180' }} " />
+                  <span class="input-group-addon">{{ text_pixels }}</span>
+                </div><br />
+                <div class="input-group">
+                  <span class="input-group-addon">Height:</span>
+                  <input type="text" class="form-control" name="{{ moduleNameSmall }}[Height]" value="{{ (moduleData['Height'] is not empty) ? moduleData['Height'] : '70' }}" />
+                  <span class="input-group-addon">{{ text_pixels }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+	</br>
+    <div class="row">
+        <div class="col-md-3">
+            <h5><strong><span class="required">* </span>{{ text_hide_cover_photo }}</strong></h5>
+            <span class="help"><i class="fa fa-info-circle"></i>&nbsp;{{ text_hide_cover_photo_help }}</span>
+        </div>
+        <div class="col-md-3">
+            <select name="{{ moduleNameSmall }}[hide_cover]" class="form-control">
+                <option value="yes" {{ ((moduleData['hide_cover'] is not empty and moduleData['hide_cover'] == 'yes') ) ? 'selected=selected'  : ''  }}>{{ text_enabled }}</option>
+                <option value="no" {{ ((moduleData['hide_cover'] is empty or moduleData['hide_cover'] == 'no') ) ? 'selected=selected'  : ''  }}>{{ text_disabled }}</option>
+            </select>
+        </div>
+    </div>
+	</br>
+    <div class="row">
+        <div class="col-md-3">
+            <h5><strong><span class="required">* </span>{{ text_show_friends_faces }}</strong></h5>
+            <span class="help"><i class="fa fa-info-circle"></i>&nbsp;{{ text_show_friends_faces_help }}</span>
+        </div>
+        <div class="col-md-3">
+            <select name="{{ moduleNameSmall }}[show_faces]" class="form-control">
+                <option value="yes" {{ ((moduleData['show_faces'] is not empty and moduleData['show_faces'] == 'yes') ) ? 'selected=selected'  : ''  }}>{{ text_enabled }}</option>
+                <option value="no" {{ ((moduleData['show_faces'] is empty or moduleData['show_faces'] == 'no') ) ? 'selected=selected'  : ''  }}>{{ text_disabled }}</option>
+            </select>
+        </div>
+    </div>
+	</br>
+	<div class="row">
+        <div class="col-md-3">
+            <h5><strong><span class="required">* </span>{{ text_show_posts }}</strong></h5>
+            <span class="help"><i class="fa fa-info-circle"></i>&nbsp;{{ text_show_posts_help }}</span>
+        </div>
+        <div class="col-md-3">
+            <select name="{{ moduleNameSmall }}[show_posts]" class="form-control">
+                <option value="yes" {{ ((moduleData['show_posts'] is not empty and moduleData['show_posts'] == 'yes') ) ? 'selected=selected'  : ''  }}>{{ text_enabled }}</option>
+                <option value="no" {{ ((moduleData['show_posts'] is empty or moduleData['show_posts'] == 'no') ) ? 'selected=selected'  : ''  }}>{{ text_disabled }}</option>
+            </select>
+        </div>
+    </div>
+	</br>
+    <div class="row">
+        <div class="col-md-3">
+            <h5><strong><span class="required">* </span>{{ text_use_small_header }}</strong></h5>
+            <span class="help"><i class="fa fa-info-circle"></i>&nbsp;{{ text_use_small_header_help }}</span>
+        </div>
+        <div class="col-md-3">
+            <select name="{{ moduleNameSmall }}[small_header]" class="form-control">
+                <option value="yes" {{ ((moduleData['small_header'] is not empty and moduleData['small_header'] == 'yes') ) ? 'selected=selected'  : ''  }}>{{ text_enabled }}</option>
+                <option value="no" {{ ((moduleData['small_header'] is empty or moduleData['small_header'] == 'no') ) ? 'selected=selected'  : ''  }}>{{ text_disabled }}</option>
+            </select>
+        </div>
+    </div>
+	</br>
+    <div class="row">
+        <div class="col-md-3">
+            <h5><strong><span class="required">* </span>{{ custom_css }}</strong></h5>
+            <span class="help"><i class="fa fa-info-circle"></i>&nbsp;{{ custom_css_help }}</span>
+        </div>
+        <div class="col-md-3">
+        	<textarea class="form-control" name="{{ moduleNameSmall }}[CustomCSS]" placeholder="{{ custom_css_placeholder }}" rows="4">{{ (moduleData['CustomCSS'] is not empty) ? moduleData['CustomCSS'] : '' }} </textarea>
+
+        </div>
+    </div>
+</div>
+<script>
+$(function() {
+    var stylePicker = $('#StylePicker');
+    var defaultStyle = $('.chat-panel-default');
+    var metroStyle = $('.chat-panel-metro');
+    var messengerIcon = $('.chat-panel-icon');
+     if (stylePicker.val() === 'default') {
+            defaultStyle.show();
+            metroStyle.hide(); 
+            messengerIcon.hide();
+      } else if (stylePicker.val() === 'icon') {
+            defaultStyle.hide();
+            metroStyle.hide(); 
+            messengerIcon.show();
+      } else if(stylePicker.val() === 'metro'){
+            defaultStyle.hide();
+            metroStyle.show(); 
+            messengerIcon.hide();
+      }   
+       stylePicker.change(function(){
+        if (stylePicker.val() === 'default') {
+            defaultStyle.fadeIn(300);
+            metroStyle.hide(); 
+            messengerIcon.hide();  
+            
+        } else if(stylePicker.val() === 'icon') {
+            defaultStyle.hide();
+            metroStyle.hide(); 
+            messengerIcon.fadeIn(300); 
+        } else if(stylePicker.val() === 'metro'){
+            defaultStyle.hide();
+            metroStyle.fadeIn(300); 
+            messengerIcon.hide();
+        }
+    }); 
+});
+
+
+</script>

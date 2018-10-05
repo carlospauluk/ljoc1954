@@ -32,7 +32,7 @@
 
     <file path="admin/controller/extension/codemarket_module.php">
         <operation>
-            <search><![CDATA[$data['dom']          = HTTP_CATALOG;
+            <search><![CDATA[$this->response->setOutput($this->load->view('extension/codemarket_module', $data));
 ]]></search>
             <add  position="before"><![CDATA[
                 $this->load->model('module/codemarket_module');
