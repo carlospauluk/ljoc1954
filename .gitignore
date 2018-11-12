@@ -3,4 +3,8 @@
 /mgm1954/config.php
 .idea*
 
-.htaccess
+*.htpasswd*
+*.htaccess*
+
+/image/cache/*
+/image/catalog/produtos/*
