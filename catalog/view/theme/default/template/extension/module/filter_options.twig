@@ -1,0 +1,26 @@
+<form action="{{ action }}">
+	{% for hidden in hiddens %}
+		<input type="hidden" name="{{hidden.name}}" value="{{hidden.value}}" />
+	{% endfor %}
+	<div class="panel panel-default">
+	  <div class="panel-heading">{{ heading_title }}</div>
+	  <div class="list-group"> {% for option in options %} <a class="list-group-item">{{ option.name }}</a>
+	    <div class="list-group-item">
+	      <div id="filter-group{{ option.option_id }}">{% for option_value in option.option_values %}
+	        <div class="checkbox">
+	          <label>{% if option_value.option_value_id in options_set %}
+	            <input type="checkbox" name="option_value[{{ option_value.option_value_id }}]" value="{{ option_value.option_value_id }}" checked="checked" />
+	            {{ option_value.name }}
+	            {% else %}
+	            <input type="checkbox" name="option_value[{{ option_value.option_value_id }}]" value="{{ option_value.option_value_id }}" />
+	            {{ option_value.name }}
+	            {% endif %}</label>
+	        </div>
+	        {% endfor %}</div>
+	    </div>
+	    {% endfor %}</div>
+	  <div class="panel-footer text-right">
+	    <input type="submit" id="button-filter" class="btn btn-primary" value="{{ button_filter }}" />
+	  </div>
+	</div>
+</form>
