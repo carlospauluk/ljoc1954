@@ -8,3 +8,8 @@
 
 /image/cache/*
 /image/catalog/produtos/*
+
+
+#Removendo arquivos inúteis do journal3
+/image/catalog/journal3/videos/*
+/image/catalog/journal3/slider/*

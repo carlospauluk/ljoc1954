@@ -1,0 +1,120 @@
+{
+  "name": {
+    "type": "Input",
+    "value": "New Label"
+  },
+  "status": {
+    "type": "Status"
+  },
+  "type": {
+    "type": "Radio",
+    "value": "special",
+    "php": true
+  },
+  "label": {
+    "type": "InputLang",
+    "value": "Label",
+    "php": true
+  },
+  "filter": {
+    "type": "ProductFilter"
+  },
+  "visibility": {
+    "type": "Toggle",
+    "rules": {
+      "true": {
+        ".product-label-default.product-label-%s": "display: flex",
+        ".product-label-diagonal.product-label-%s": "display: block"
+      },
+      "false": {
+        ".product-label-default.product-label-%s": "display: none",
+        ".product-label-diagonal.product-label-%s": "display: none"
+      }
+    }
+  },
+  "display": {
+    "type": "Radio",
+    "value": "default",
+    "php": true
+  },
+  "offsets": {
+    "type": "InputNumber",
+    "selector": ".product-label-diagonal.product-label-%s",
+    "property": "margin:%spx"
+  },
+  "margin": {
+    "type": "Margin",
+    "selector": ".product-label-default.product-label-%s"
+  },
+  "scale": {
+    "type": "InputSlider",
+    "value": "10",
+    "selector": ".product-label-diagonal.product-label-%s > b",
+    "property": "transform: scale(calc(%s / 10));"
+  },
+  "position": {
+    "type": "Radio",
+    "value": "end",
+    "rules": {
+      "start": {
+        ".product-label-default.product-label-%s": "justify-content: flex-start"
+      },
+      "end": {
+        ".product-label-default.product-label-%s": "justify-content: flex-end"
+      }
+    }
+  },
+  "labelStyle": {
+    "type": "Variable",
+    "variable": "label",
+    "selector_prefix": ".product-label-%s"
+  },
+  "labelSort": {
+    "type": "InputNumber",
+    "rules":{
+      "@":{
+        ".product-label-%s": "order:%s"
+      }
+    }
+  },
+  "labelIcon": {
+    "type": "Icon",
+    "selector": ".product-label-%s b::before"
+  },
+  "labelFont": {
+    "type": "Font",
+    "selector":".product-label-%s b"
+  },
+  "labelBackground": {
+    "type": "Background",
+    "selector":".product-label-%s b",
+    "value": {
+      "background-size":"contain",
+      "background-repeat":"no-repeat"
+    }
+  },
+  "labelBorder": {
+    "type": "Border",
+    "selector":".product-label-%s b"
+  },
+  "labelBorderRadius": {
+    "type": "BorderRadius",
+    "selector":".product-label-%s b"
+  },
+  "labelPadding": {
+    "type": "Padding",
+    "selector":".product-label-%s b"
+  },
+  "labelShadow": {
+    "type": "Shadow",
+    "selector":".product-label-%s b"
+  },
+  "labelSize": {
+    "type": "InputPair",
+    "selector": ".product-label-%s.product-label-default b",
+    "properties": {
+      "first": "width:%spx",
+      "second": "height:%spx"
+    }
+  }
+}
