@@ -27,7 +27,6 @@
       }
     }
   },
-
   "headerSiteOverlayOffset": {
     "type": "InputNumber",
     "rules": {
@@ -36,48 +35,40 @@
       }
     }
   },
-
   "headerSiteOverlayBG": {
     "type": "Color",
     "property": "background-color",
     "selector": ".desktop-main-menu-wrapper .first-dropdown::before"
   },
-
   "menuLabelStyle": {
     "type": "Variable",
     "variable": "menu_label",
     "selector_prefix": ".main-menu-item"
   },
-
   "mainMenu": {
     "type": "Variable",
     "variable": "menu",
     "selector_prefix": ".main-menu >"
   },
-
   "mainMenu2": {
     "type": "Variable",
     "variable": "menu",
     "selector_prefix": "#main-menu-2 >"
   },
-
   "mainMenu2Margin": {
     "type": "Margin",
     "selector": "#main-menu-2"
   },
-
   "menuDropdown": {
     "type": "Variable",
     "variable": "dropdown",
     "selector_prefix": ".main-menu > ul >"
   },
-
   "menuDropdown2": {
     "type": "Variable",
     "variable": "dropdown",
     "selector_prefix": "#main-menu-2 > ul >"
   },
-
   "megaMenu": {
     "type": "Variable",
     "variable": "mega_menu",
@@ -125,24 +116,24 @@
     "rules": {
       "left": {
         ".desktop-main-menu-wrapper #main-menu": "margin-left:0; margin-right:0;",
-        ".desktop-main-menu-wrapper .desktop-cart-wrapper":"margin-left:auto",
+        ".desktop-main-menu-wrapper .desktop-cart-wrapper": "margin-left:auto",
         ".mid-bar #main-menu-2": "order:initial"
       },
       "right": {
         ".desktop-main-menu-wrapper #main-menu": "margin-left:0; margin-right:auto;",
-        ".desktop-main-menu-wrapper .desktop-cart-wrapper":"margin-left:0",
+        ".desktop-main-menu-wrapper .desktop-cart-wrapper": "margin-left:0",
         ".mid-bar #main-menu-2": "order:5"
       }
     },
     "rtlRules": {
       "left": {
         ".desktop-main-menu-wrapper #main-menu": "margin-left:0; margin-right:0;",
-        ".desktop-main-menu-wrapper .desktop-cart-wrapper":"margin-right:auto",
+        ".desktop-main-menu-wrapper .desktop-cart-wrapper": "margin-right:auto",
         ".mid-bar #main-menu-2": "order:initial"
       },
       "right": {
         ".desktop-main-menu-wrapper #main-menu": "margin-right:0; margin-left:auto;",
-        ".desktop-main-menu-wrapper .desktop-cart-wrapper":"margin-right:0",
+        ".desktop-main-menu-wrapper .desktop-cart-wrapper": "margin-right:0",
         ".mid-bar #main-menu-2": "order:5"
       }
     }
@@ -259,7 +250,7 @@
       "first": "transform: translateX(%spx)",
       "second": "margin-top:%spx"
     },
-    "rtlProperties":{
+    "rtlProperties": {
       "first": "transform: translateX(calc(0px - (%spx)))",
       "second": "margin-top:%spx"
     }

@@ -1,9 +1,9 @@
 @font-face {
   font-family: 'icomoon';
   src:
-    url('fonts/icomoon.ttf?xjfpwh') format('truetype'),
-    url('fonts/icomoon.woff?xjfpwh') format('woff'),
-    url('fonts/icomoon.svg?xjfpwh#icomoon') format('svg');
+    url('fonts/icomoon.ttf?48w3oy') format('truetype'),
+    url('fonts/icomoon.woff?48w3oy') format('woff'),
+    url('fonts/icomoon.svg?48w3oy#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -514,6 +514,21 @@
 }
 .icon-noun_quotes_953503_000000:before {
   content: "\e90b";
+}
+.icon-noun_flame_690155_000000:before {
+  content: "\e9bd";
+}
+.icon-noun_question_help_629634_000000:before {
+  content: "\e9be";
+}
+.icon-one:before {
+  content: "\e9b8";
+}
+.icon-two-2:before {
+  content: "\e9bb";
+}
+.icon-three-3:before {
+  content: "\e9bc";
 }
 .icon-iconmonstr-whatsapp-4:before {
   content: "\e979";

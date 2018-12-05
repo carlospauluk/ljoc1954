@@ -158,7 +158,7 @@ class ModelJournal3Blog extends Model {
 		}
 
 		if (Arr::get($data, 'categories')) {
-			$sql .= " AND p2c.category_id IN (" . implode(',', $data['categories']) . ")";
+			$sql .= " AND p2c.category_id IN (" . implode(',', array_map('intval', $data['categories'])) . ")";
 		}
 
 		if (isset($data['tag']) && $data['tag']) {
@@ -182,7 +182,7 @@ class ModelJournal3Blog extends Model {
 		}
 
 		if (Arr::get($data, 'post_ids')) {
-			$sql .= ' AND p.post_id IN (' . implode(',', $data['post_ids']) . ')';
+			$sql .= ' AND p.post_id IN (' . implode(',', array_map('intval', $data['post_ids'])) . ')';
 		}
 
 		$sql .= ' AND p.status = 1';

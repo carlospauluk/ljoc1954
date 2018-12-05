@@ -44,7 +44,12 @@ class Controller extends \Controller implements Autocomplete {
 
 		if (is_array($data)) {
 			foreach ($data as $key => $value) {
-				$this->request->post[$key] = $value;
+				// do not clean if admin
+				if (Arr::get($this->registry->get('session')->data, 'user_id')) {
+					$this->request->post[$key] = $value;
+				} else {
+					$this->request->post[$this->request->clean($key)] = $this->request->clean($value);
+				}
 			}
 		}
 	}

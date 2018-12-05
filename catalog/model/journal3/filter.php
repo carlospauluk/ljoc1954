@@ -109,19 +109,19 @@ class ModelJournal3Filter extends Model {
 					break;
 
 				case 'fc';
-					$filter_data['categories'] = explode($separator, $v);
+					$filter_data['categories'] = array_map('intval', explode($separator, $v));
 					break;
 
 				case 'fm';
-					$filter_data['manufacturers'] = explode($separator, $v);
+					$filter_data['manufacturers'] = array_map('intval', explode($separator, $v));
 					break;
 
 				case 'fq';
-					$filter_data['availability'] = explode($separator, $v);
+					$filter_data['availability'] = array_map('intval', explode($separator, $v));
 					break;
 
 				case 'fr';
-					$filter_data['ratings'] = explode($separator, $v);
+					$filter_data['ratings'] = array_map('intval', explode($separator, $v));
 					break;
 
 				case 'ft';
@@ -131,15 +131,15 @@ class ModelJournal3Filter extends Model {
 				default:
 					switch (substr($k, 0, 2)) {
 						case 'fa';
-							$filter_data['attributes'][substr($k, 2)] = explode($separator, $v);
+							$filter_data['attributes'][(int)substr($k, 2)] = explode($separator, $v);
 							break;
 
 						case 'fo';
-							$filter_data['options'][substr($k, 2)] = explode($separator, $v);
+							$filter_data['options'][(int)substr($k, 2)] = explode($separator, $v);
 							break;
 
 						case 'ff';
-							$filter_data['filters'][substr($k, 2)] = explode($separator, $v);
+							$filter_data['filters'][(int)substr($k, 2)] = explode($separator, $v);
 							break;
 					}
 			}
@@ -800,7 +800,7 @@ class ModelJournal3Filter extends Model {
 		}
 
 		if (Arr::get($filter_data, 'limit')) {
-			$sql .= " LIMIT " . Arr::get($filter_data, 'start', 0) . ", " . $filter_data['limit'];
+			$sql .= " LIMIT " . (int)Arr::get($filter_data, 'start', 0) . ", " . (int)$filter_data['limit'];
 		}
 
 		return $this->dbQuery($sql, 'PRODUCTS')->rows;
@@ -853,13 +853,13 @@ class ModelJournal3Filter extends Model {
 		if ($query !== 'category' && (Arr::get($filter_data, 'categories') || Arr::get($filter_data, 'filter_category_id'))) {
 			if (Arr::get($filter_data, 'filter_sub_category')) {
 				if (Arr::get($filter_data, 'categories')) {
-					$sql .= " AND cp.path_id IN (" . implode(",", $filter_data['categories']) . ")";
+					$sql .= " AND cp.path_id IN (" . implode(",", array_map('intval', $filter_data['categories'])) . ")";
 				} else {
 					$sql .= " AND cp.path_id = '" . (int)$filter_data['filter_category_id'] . "'";
 				}
 			} else {
 				if (Arr::get($filter_data, 'categories')) {
-					$sql .= " AND p2c.category_id IN (" . implode(",", $filter_data['categories']) . ")";
+					$sql .= " AND p2c.category_id IN (" . implode(",", array_map('intval', $filter_data['categories'])) . ")";
 				} else {
 					$sql .= " AND p2c.category_id = '" . (int)$filter_data['filter_category_id'] . "'";
 				}
@@ -868,7 +868,7 @@ class ModelJournal3Filter extends Model {
 
 		if ($query !== 'manufacturer') {
 			if (Arr::get($filter_data, 'manufacturers')) {
-				$sql .= " AND p.manufacturer_id IN (" . implode(",", $filter_data['manufacturers']) . ")";
+				$sql .= " AND p.manufacturer_id IN (" . implode(",", array_map('intval', $filter_data['manufacturers'])) . ")";
 			} else if (Arr::get($filter_data, 'filter_manufacturer_id')) {
 				$sql .= " AND p.manufacturer_id = '" . (int)$filter_data['filter_manufacturer_id'] . "'";
 			}
@@ -884,22 +884,16 @@ class ModelJournal3Filter extends Model {
 					$temp[] = "TRIM(pai.text) = '" . $this->db->escape($value) . "'";
 				}
 
-				$sql .= " AND EXISTS (SELECT * FROM `" . DB_PREFIX . $attribute_table . "` pai WHERE p.product_id = pai.product_id AND pai.attribute_id = " . $attribute_id . " AND (" . implode(' OR ', $temp) . "))";
+				$sql .= " AND EXISTS (SELECT * FROM `" . DB_PREFIX . $attribute_table . "` pai WHERE p.product_id = pai.product_id AND pai.attribute_id = " . (int)$attribute_id . " AND (" . implode(' OR ', $temp) . "))";
 			}
 		}
 
 		if ($query !== 'option' && Arr::get($filter_data, 'options')) {
 			foreach ($filter_data['options'] as $options) {
-				$temp = array();
-
-				foreach ($options as $option) {
-					$temp[] = $this->db->escape($option);
-				}
-
 				$sql .= " AND EXISTS (
 							SELECT * FROM `" . DB_PREFIX . "product_option_value` povi 
 							WHERE
-								p.product_id = povi.product_id AND povi.option_value_id IN (" . implode(', ', $temp) . ")
+								p.product_id = povi.product_id AND povi.option_value_id IN (" . implode(', ', array_map('intval', $options)) . ")
 				";
 
 				if ($this->journal3->settings->get('filterCheckOptionsQuantity')) {
@@ -912,13 +906,7 @@ class ModelJournal3Filter extends Model {
 
 		if ($query !== 'filter' && Arr::get($filter_data, 'filters')) {
 			foreach ($filter_data['filters'] as $filters) {
-				$temp = array();
-
-				foreach ($filters as $filter) {
-					$temp[] = $this->db->escape($filter);
-				}
-
-				$sql .= " AND EXISTS (SELECT * FROM `" . DB_PREFIX . "product_filter` pfi WHERE p.product_id = pfi.product_id AND pfi.filter_id IN (" . implode(', ', $temp) . "))";
+				$sql .= " AND EXISTS (SELECT * FROM `" . DB_PREFIX . "product_filter` pfi WHERE p.product_id = pfi.product_id AND pfi.filter_id IN (" . implode(', ', array_map('intval', $filters)) . "))";
 			}
 		}
 
