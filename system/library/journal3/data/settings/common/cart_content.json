@@ -193,6 +193,45 @@
     "type":"Variable",
     "variable": "button",
     "selector_prefix": "div.cart-content .btn-checkout&"
+  },
+  "CartContentCartPadding": {
+    "type": "Padding",
+    "selector": "div.cart-content .cart-buttons .btn-cart",
+    "important": true
+  },
+  "CartContentCartMargin": {
+    "type": "Margin",
+    "selector": "div.cart-content .cart-buttons .btn-cart"
+  },
+  "CartContentCartRadius": {
+    "type": "BorderRadius",
+    "selector": "div.cart-content .cart-buttons .btn-cart",
+    "important": true
+  },
+  "CartContentCheckoutPadding": {
+    "type": "Padding",
+    "selector": "div.cart-content .cart-buttons .btn-checkout",
+    "important": true
+  },
+  "CartContentCheckoutMargin": {
+    "type": "Margin",
+    "selector": "div.cart-content .cart-buttons .btn-checkout"
+  },
+  "CartContentCheckoutRadius": {
+    "type": "BorderRadius",
+    "selector": "div.cart-content .cart-buttons .btn-checkout",
+    "important": true
+  },
+  "CartContentButtonsWidth": {
+    "type": "Radio",
+    "value": "auto",
+    "rules": {
+      "auto": {
+        "div.cart-content .cart-buttons .btn": "width:auto"
+      },
+      "full": {
+        "div.cart-content .cart-buttons .btn": "width:100%"
+      }
+    }
   }
-
 }

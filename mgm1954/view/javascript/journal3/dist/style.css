@@ -5079,7 +5079,7 @@ div + .ui-toggle {
     margin-left: 10px; }
 
 .ui-select .Select {
-  width: 188px; }
+  width: 250px; }
 
 .small-select .Select {
   width: 114px !important; }
@@ -5094,7 +5094,7 @@ div + .ui-toggle {
   width: 250px; }
 
 .ui-link .ui-search .Select {
-  width: 350px; }
+  width: 330px; }
 
 .Select-control {
   color: #2a323f;

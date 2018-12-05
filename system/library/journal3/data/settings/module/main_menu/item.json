@@ -17,62 +17,62 @@
   },
   "icon": {
     "type": "Icon",
-    "selector": ".main-menu.main-menu-%s > .j-menu .menu-item.main-menu-item-%s > a::before"
+    "selector": "div.main-menu.main-menu-%s > .j-menu .menu-item.main-menu-item-%s > a::before"
   },
   "iconHover": {
     "type": "Color",
-    "selector": ".main-menu.main-menu-%s > .j-menu .menu-item.main-menu-item-%s:hover > a::before",
+    "selector": "div.main-menu.main-menu-%s > .j-menu .menu-item.main-menu-item-%s:hover > a::before",
     "desktop":true,
     "property": "color"
   },
   "font": {
     "type": "Font",
-    "selector": ".main-menu.main-menu-%s > .j-menu .main-menu-item-%s > a",
+    "selector": "div.main-menu.main-menu-%s > .j-menu li.main-menu-item-%s > a",
     "important": true
   },
   "border": {
     "type": "Border",
-    "selector": ".main-menu.main-menu-%s > .j-menu > .main-menu-item-%s > a > .links-text"
+    "selector": "div.main-menu.main-menu-%s > .j-menu > .main-menu-item-%s > a > .links-text"
   },
   "borderHover": {
     "type": "Color",
-    "selector": ".main-menu.main-menu-%s > .j-menu > .main-menu-item-%s:hover > a > .links-text",
+    "selector": "div.main-menu.main-menu-%s > .j-menu > .main-menu-item-%s:hover > a > .links-text",
     "property": "border-color",
     "desktop":true
   },
   "borderRadius": {
     "type": "BorderRadius",
-    "selector": ".main-menu.main-menu-%s > .j-menu > .main-menu-item-%s > a"
+    "selector": "div.main-menu.main-menu-%s > .j-menu > .main-menu-item-%s > a"
   },
   "textPadding": {
     "type": "Padding",
-    "selector": ".main-menu.main-menu-%s > .j-menu .main-menu-item-%s > a > .links-text"
+    "selector": "div.main-menu.main-menu-%s > .j-menu li.main-menu-item-%s > a > .links-text"
   },
   "fontHover": {
     "type": "Font",
-    "selector": ".main-menu.main-menu-%s > .j-menu .main-menu-item-%s:hover > a",
+    "selector": "div.main-menu.main-menu-%s > .j-menu li.main-menu-item-%s:hover > a",
     "desktop":true,
     "important": true
   },
   "background": {
     "type": "Background",
-    "selector": ".main-menu.main-menu-%s > .j-menu .main-menu-item-%s > a"
+    "selector": "div.main-menu.main-menu-%s > .j-menu li.main-menu-item-%s > a"
   },
   "backgroundHover": {
     "type": "Background",
-    "selector": ".main-menu.main-menu-%s > .j-menu .main-menu-item-%s:hover > a",
+    "selector": "div.main-menu.main-menu-%s > .j-menu li.main-menu-item-%s:hover > a",
     "desktop":true
   },
   "padding": {
     "type": "Padding",
-    "selector": ".main-menu.main-menu-%s > .j-menu > .main-menu-item-%s > a",
+    "selector": "div.main-menu.main-menu-%s > .j-menu > .main-menu-item-%s > a",
     "important": true
   },
   "itemMinWidth": {
     "type": "InputNumber",
     "rules":{
       "@":{
-        ".main-menu.main-menu-%s > .j-menu > .main-menu-item-%s > a": "min-width:%spx"
+        "div.main-menu.main-menu-%s > .j-menu > .main-menu-item-%s > a": "min-width:%spx"
       }
     }
   },
@@ -170,39 +170,39 @@
     "value": "false",
     "rules": {
       "true": {
-        ".main-menu-%s > .j-menu .main-menu-item-%s > a::before": "margin:0",
-        ".main-menu-%s > .j-menu .main-menu-item-%s > a .links-text": "display:none"
+        ".main-menu-%s > .j-menu li.main-menu-item-%s > a::before": "margin:0",
+        ".main-menu-%s > .j-menu li.main-menu-item-%s > a .links-text": "display:none"
       }
     },
     "rtlRules": {
       "true": {
-        "html[dir='rtl'] .main-menu-%s > .j-menu .main-menu-item-%s > a::before": "margin:0",
-        "html[dir='rtl'] .main-menu-%s > .j-menu .main-menu-item-%s > a .links-text": "display:none"
+        "html[dir='rtl'] .main-menu-%s > .j-menu li.main-menu-item-%s > a::before": "margin:0",
+        "html[dir='rtl'] .main-menu-%s > .j-menu li.main-menu-item-%s > a .links-text": "display:none"
       }
     }
   },
   "megaMenuCustomTriangle": {
     "include": "triangle",
-    "selector_prefix": ".desktop-main-menu-wrapper .main-menu-%s > .j-menu .main-menu-item-%s:not(.mega-fullwidth) > .dropdown-menu"
+    "selector_prefix": ".desktop-main-menu-wrapper .main-menu-%s > .j-menu li.main-menu-item-%s:not(.mega-fullwidth) > .dropdown-menu"
   },
   "mainMenuItemFont": {
     "type": "Font",
-    "selector": ".main-menu-%s.main-menu-%s > .j-menu .main-menu-item-%s > a",
+    "selector": ".main-menu-%s.main-menu-%s > .j-menu li.main-menu-item-%s > a",
     "important": true
   },
   "mainMenuItemFontHover": {
     "type": "Font",
-    "selector": ".main-menu.main-menu-%s > .j-menu .main-menu-item-%s:hover > a",
+    "selector": "div.main-menu.main-menu-%s > .j-menu li.main-menu-item-%s:hover > a",
     "desktop":true
   },
   "mainMenuItemBG": {
     "type": "Background",
-    "selector": ".main-menu-%s > .j-menu .main-menu-item-%s",
+    "selector": ".main-menu-%s > .j-menu li.main-menu-item-%s",
     "important": true
   },
   "mainMenuItemBGHover": {
     "type": "Background",
-    "selector": ".main-menu.main-menu-%s > .j-menu .main-menu-item-%s:hover",
+    "selector": "div.main-menu.main-menu-%s > .j-menu li.main-menu-item-%s:hover",
     "desktop":true
   },
   "megaMenuTriangle": {
@@ -225,18 +225,18 @@
     "value": "right",
     "rules": {
       "left": {
-        ".desktop-main-menu-wrapper .main-menu-%s > .j-menu .main-menu-item-%s.multi-level .dropdown-menu ul li .dropdown-menu": "left:0%; transform: translateX(-100%);"
+        ".desktop-main-menu-wrapper .main-menu-%s > .j-menu li.main-menu-item-%s.multi-level .dropdown-menu ul li .dropdown-menu": "left:0%; transform: translateX(-100%);"
       },
       "right": {
-        ".desktop-main-menu-wrapper .main-menu-%s > .j-menu .main-menu-item-%s.multi-level .dropdown-menu ul li .dropdown-menu": "left:100%"
+        ".desktop-main-menu-wrapper .main-menu-%s > .j-menu li.main-menu-item-%s.multi-level .dropdown-menu ul li .dropdown-menu": "left:100%"
       }
     },
     "rtlRules": {
       "right": {
-        ".desktop-main-menu-wrapper .main-menu-%s > .j-menu .main-menu-item-%s.multi-level .dropdown-menu ul li .dropdown-menu": "right:100%"
+        ".desktop-main-menu-wrapper .main-menu-%s > .j-menu li.main-menu-item-%s.multi-level .dropdown-menu ul li .dropdown-menu": "right:100%"
       },
       "left": {
-        ".desktop-main-menu-wrapper .main-menu-%s > .j-menu .main-menu-item-%s.multi-level .dropdown-menu ul li .dropdown-menu": "right:0; transform: translateX(100%);"
+        ".desktop-main-menu-wrapper .main-menu-%s > .j-menu li.main-menu-item-%s.multi-level .dropdown-menu ul li .dropdown-menu": "right:0; transform: translateX(100%);"
       }
     }
   },
@@ -244,12 +244,12 @@
     "type": "InputNumber",
     "rules": {
       "@": {
-        ".desktop-main-menu-wrapper .main-menu-%s > .j-menu .main-menu-item-%s.multi-level .dropdown-menu ul li .dropdown-menu": "margin-left:%spx"
+        ".desktop-main-menu-wrapper .main-menu-%s > .j-menu li.main-menu-item-%s.multi-level .dropdown-menu ul li .dropdown-menu": "margin-left:%spx"
       }
     },
     "rtlRules": {
       "@": {
-        ".desktop-main-menu-wrapper .main-menu-%s > .j-menu .main-menu-item-%s.multi-level .dropdown-menu ul li .dropdown-menu": "margin-right:%spx"
+        ".desktop-main-menu-wrapper .main-menu-%s > .j-menu li.main-menu-item-%s.multi-level .dropdown-menu ul li .dropdown-menu": "margin-right:%spx"
       }
     }
   },
@@ -257,30 +257,30 @@
     "type": "InputNumber",
     "rules": {
       "@": {
-        ".desktop-main-menu-wrapper .main-menu-%s > .j-menu .main-menu-item-%s.multi-level .dropdown-menu": "width:%spx"
+        ".desktop-main-menu-wrapper .main-menu-%s > .j-menu li.main-menu-item-%s.multi-level .dropdown-menu": "width:%spx"
       }
     }
   },
   "labelStyle": {
     "type": "Variable",
     "variable": "menu_label",
-    "selector_prefix": ".main-menu-%s > .j-menu .main-menu-item-%s"
+    "selector_prefix": ".main-menu-%s > .j-menu li.main-menu-item-%s"
   },
   "megaStyle": {
     "type": "Variable",
     "variable": "mega_menu",
-    "selector_prefix": ".main-menu-%s > .j-menu .main-menu-item-%s"
+    "selector_prefix": ".main-menu-%s > .j-menu li.main-menu-item-%s"
   },
   "dropdownWidth": {
     "type": "InputNumber",
     "rules": {
       "@": {
-        ".desktop-main-menu-wrapper .main-menu-%s > .j-menu .main-menu-item-%s.flyout > .dropdown-menu": "min-width:%spx"
+        ".desktop-main-menu-wrapper .main-menu-%s > .j-menu li.main-menu-item-%s.flyout > .dropdown-menu": "min-width:%spx"
       }
     }
   },
   "megaMenuBorder": {
     "type": "Border",
-    "selector": ".desktop .main-menu-%s > .j-menu .main-menu-item-%s .mega-menu-content"
+    "selector": ".desktop .main-menu-%s > .j-menu li.main-menu-item-%s .mega-menu-content"
   }
 }

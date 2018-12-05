@@ -115,6 +115,11 @@
     "selector": ".mobile-filter-trigger.btn",
     "important": true
   },
+  "filterMobileWrapperStyle": {
+    "type": "Variable",
+    "variable": "mobile_wrapper",
+    "selector_prefix": ".mobile-filter-container-open"
+  },
   "mobileButtonAlign": {
     "type": "Radio",
     "value": "center",

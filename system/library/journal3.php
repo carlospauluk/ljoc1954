@@ -9,7 +9,7 @@ use Journal3\Utils\Html;
 use Journal3\Utils\Request;
 use Journal3\Utils\Str;
 
-define('JOURNAL3_VERSION', '3.0.17');
+define('JOURNAL3_VERSION', '3.0.18');
 
 if (!defined('JOURNAL3_OC_VERSION')) {
 	if (version_compare(VERSION, '3.1', '>=')) {

@@ -10,7 +10,7 @@ class Model extends \Model implements Autocomplete {
 	);
 
 	protected function dbPrefix($table) {
-		return DB_PREFIX . $table;
+		return $this->dbEscape(DB_PREFIX . $table);
 	}
 
 	protected function dbEscape($value) {

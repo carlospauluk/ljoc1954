@@ -64,6 +64,16 @@ function journal_filter_price_slider() {
 }
 
 function journal_filter(url, source) {
+	if (window['URL']) {
+		var u = new URL(url);
+
+		u.host = window.location.host;
+		u.hostname = window.location.hostname;
+		u.protocol = window.location.protocol;
+
+		url = u.toString();
+	}
+
 	if (window.history && window.history.replaceState) {
 		history.pushState(history.state, document.title, url);
 	}
@@ -79,7 +89,7 @@ function journal_filter(url, source) {
 			loader('.container > .row', false);
 
 			if (source === 'pagination') {
-				$('html, body').animate({scrollTop: 0}, 700);
+				$('html, body').animate({ scrollTop: 0 }, 700);
 			}
 		},
 		success: function (response) {

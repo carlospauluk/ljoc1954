@@ -31,8 +31,8 @@
     "type": "InputPair",
     "selector": "&.product-label-default b",
     "properties": {
-      "first": "width:%spx",
-      "second": "height:%spx"
+      "first": "min-width:%spx",
+      "second": "min-height:%spx"
     }
   }
 }

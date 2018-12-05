@@ -269,6 +269,17 @@
     "type": "Font",
     "selector": ".product-info .product-stats span"
   },
+  "BrandNameVisibility": {
+    "type": "Toggle",
+    "rules": {
+      "true": {
+        ".product-info .product-details .brand-image a span": "display: block"
+      },
+      "false": {
+        ".product-info .product-details .brand-image a span": "display: none"
+      }
+    }
+  },
   "BrandImageBox": {
     "include": "common",
     "selector_prefix": ".product-info .product-details .brand-image a"
@@ -1402,7 +1413,7 @@
 
   "Extra1ButtonDisplay": {
     "type": "Radio",
-    "value": "",
+    "value": "both",
     "rules": {
       "icon": {
         ".product-info .button-group-page .extra-group .btn:first-child .btn-text": "display:none",
@@ -1421,7 +1432,7 @@
   },
   "Extra2ButtonDisplay": {
     "type": "Radio",
-    "value": "",
+    "value": "both",
     "rules": {
       "icon": {
         ".product-info .button-group-page .btn-extra + .btn .btn-text": "display:none",
@@ -1434,25 +1445,6 @@
       "both": {
         ".product-info .button-group-page .btn-extra + .btn::before": "display:inline-block",
         ".product-info .button-group-page .btn-extra + .btn .btn-text": "display:inline-block; padding:0 .4em"
-      }
-    },
-    "php": true
-  },
-
-
-  "ExtraDisplay": {
-    "type": "Radio",
-    "value": "icon",
-    "rules": {
-      "icon": {
-        ".product-info .button-group-page .btn-extra .btn-text": "display:none"
-      },
-      "text": {
-        ".product-info .button-group-page .btn-extra::before": "display:none",
-        ".product-info .button-group-page .btn-extra .btn-text": "display:inline-block; padding:0;"
-      },
-      "both": {
-        ".product-info .button-group-page .btn-extra::before, .product-info .button-group-page .btn-extra .btn-text": "display:inline-block"
       }
     },
     "php": true

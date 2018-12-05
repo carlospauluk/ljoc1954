@@ -31,7 +31,7 @@
               <h3 class="refine-title">{{ j3.settings.get('refineTitle') }}</h3>
             {% endif %}
             {% if j3.settings.get('subcategoriesDisplay') == 'carousel' %}
-            <div class="swiper" data-items-per-row='{{ j3.settings.get('subcategoriesItemsPerRow')|json_encode(constant('JSON_FORCE_OBJECT')) }}' data-options='{"slidesPerColumn": 1}'>
+            <div class="swiper" data-items-per-row='{{ j3.settings.get('subcategoriesItemsPerRow')|json_encode(constant('JSON_FORCE_OBJECT')) }}' data-options='{{ j3.carousel(j3.document.getJs(), 'subcategoriesCarouselStyle')|json_encode(constant('JSON_FORCE_OBJECT')) }}'>
               <div class="swiper-container" {% if j3.isRTL() %}dir="rtl"{% endif %}>
                 <div class="swiper-wrapper">
                   {% else %}

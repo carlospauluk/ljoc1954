@@ -151,8 +151,6 @@
 
 
 
-
-
   "CountBadge": {
     "type": "Variable",
     "variable": "count_badge",

@@ -130,7 +130,7 @@ class Document {
 	}
 
 	public function addClass($class) {
-		$class = trim($class);
+		$class = htmlspecialchars(trim($class), ENT_COMPAT, 'UTF-8');
 		$this->classes[$class] = $class;
 	}
 

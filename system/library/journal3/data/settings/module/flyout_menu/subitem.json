@@ -9,28 +9,28 @@
   },
   "icon": {
     "type": "Icon",
-    "selector": ".flyout-menu-%s > .flyout-menu-item-%s > div > ul > li > a::before"
+    "selector": ".flyout-menu-%s .flyout-menu-item-%s > a::before"
   },
   "iconHover": {
     "type": "Color",
-    "selector": ".flyout-menu-%s > .flyout-menu-item-%s > div > ul > li:hover > a::before",
+    "selector": ".flyout-menu-%s .flyout-menu-item-%s:hover > a::before",
     "property": "color"
   },
   "font": {
     "type": "Icon",
-    "selector": ".flyout-menu-%s > .flyout-menu-item-%s > div > ul > li > a"
+    "selector": ".flyout-menu-%s .flyout-menu-item-%s > a"
   },
   "fontHover": {
     "type": "Font",
-    "selector": ".flyout-menu-%s > .flyout-menu-item-%s > div > ul > li:hover > a"
+    "selector": ".flyout-menu-%s .flyout-menu-item-%s:hover > a"
   },
   "bg": {
     "type": "Background",
-    "selector": ".flyout-menu-%s > .flyout-menu-item-%s"
+    "selector": ".flyout-menu-%s .flyout-menu-item-%s"
   },
   "bgHover": {
     "type": "Background",
-    "selector": ".flyout-menu-%s > .flyout-menu-item-%s:hover"
+    "selector": ".flyout-menu-%s .flyout-menu-item-%s:hover"
   },
   "link": {
     "type": "Link",

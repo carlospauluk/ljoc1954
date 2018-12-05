@@ -21,7 +21,7 @@
   },
   "MobileWrapperCloseIconHover": {
     "type": "Color",
-    "selector": ".desktop-header-active .mobile-wrapper-header > a:hover::before",
+    "selector": ".mobile-wrapper-header > a:hover::before",
     "property": "color"
   },
   "MobileWrapperCloseIconBackground": {
@@ -30,7 +30,7 @@
   },
   "MobileWrapperCloseIconBackgroundHover": {
     "type": "Background",
-    "selector": ".desktop-header-active .mobile-wrapper-header > a:hover"
+    "selector": ".mobile-wrapper-header > a:hover"
   },
   "MobileWrapperCloseIconBorder": {
     "type": "Border",

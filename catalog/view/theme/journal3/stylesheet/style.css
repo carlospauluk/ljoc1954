@@ -1069,7 +1069,7 @@ legend {
             align-items: center; }
     .radio label input[type='checkbox'],
     .checkbox label input[type='checkbox'] {
-      margin-top: 4px; }
+      margin-top: 3px; }
   .radio a,
   .checkbox a {
     padding: 0 3px; }
@@ -1366,6 +1366,10 @@ table {
 
 .table-striped > tbody > tr:nth-of-type(odd) {
   background-color: transparent; }
+
+html[dir='rtl'] .table {
+  max-width: none;
+  max-width: initial; }
 
 .table > tbody > tr > td,
 .table > tbody > tr > th,
@@ -5874,7 +5878,9 @@ https://www.journal-theme.com/
     height: 100%;
     position: absolute;
     z-index: 1;
-    pointer-events: none; }
+    pointer-events: none;
+    -webkit-transition: all 0.075s ease-out;
+    transition: all 0.075s ease-out; }
   .module-master_slider .slider-static-text {
     position: absolute;
     z-index: 2;
@@ -6222,8 +6228,6 @@ https://www.journal-theme.com/
     display: block;
     margin-top: 5px;
     width: 100%; }
-    .module-newsletter .input-group + .checkbox label input {
-      top: 3px; }
 
 .agree b {
   font-weight: inherit; }
@@ -7175,10 +7179,6 @@ header {
     -webkit-box-pack: end;
         -ms-flex-pack: end;
             justify-content: flex-end; }
-  .desktop-header-active .header-slim .top-menu > ul {
-    margin: 0;
-    -ms-flex-wrap: nowrap;
-        flex-wrap: nowrap; }
   .desktop-header-active .header-slim .full-search {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -7193,6 +7193,10 @@ header {
     .desktop-header-active .header-slim .full-search #search {
       width: 100%;
       height: 40px; }
+  .desktop-header-active .header-sm .top-menu > ul {
+    margin: 0;
+    -ms-flex-wrap: nowrap;
+        flex-wrap: nowrap; }
   .desktop-header-active .mid-bar {
     position: relative; }
 
@@ -7720,7 +7724,7 @@ html[dir='rtl'] .desktop-main-menu-wrapper .main-menu .main-menu-item:first-of-t
   z-index: 0;
   position: absolute;
   width: 100vw;
-  min-height: calc(100vh - 250px);
+  height: calc(100vh - 60px);
   top: 100%;
   left: 0;
   pointer-events: none;
@@ -7730,7 +7734,8 @@ html[dir='rtl'] .desktop-main-menu-wrapper .main-menu .main-menu-item:first-of-t
   visibility: hidden;
   -webkit-transition: all .15s .15s ease-in-out;
   transition: all .15s .15s ease-in-out;
-  content: ""; }
+  content: "";
+  display: none; }
 
 .desktop-main-menu-wrapper.boxed-layout .main-menu > .j-menu > .first-dropdown::before {
   display: none !important; }
@@ -7743,11 +7748,13 @@ html[dir='rtl'] .desktop-main-menu-wrapper .main-menu .main-menu-item:first-of-t
 
 .desktop-header-active .menu-open .main-menu > .j-menu > .first-dropdown::before {
   opacity: 1;
-  visibility: visible; }
+  visibility: visible;
+  display: block; }
 
 .desktop-header-active .menu-hover .main-menu > .j-menu > .first-dropdown::before {
   opacity: 0;
-  visibility: hidden; }
+  visibility: hidden;
+  display: none; }
 
 /******************************
  Mobile Menu Desktop
@@ -7917,6 +7924,8 @@ div.cart-content {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
@@ -8072,6 +8081,9 @@ https://www.journal-theme.com/
 html[dir='rtl'] .mobile-custom-menu .count-badge {
   left: 0;
   right: auto; }
+
+.mobile-main-menu-wrapper .main-menu.accordion-menu .j-menu .j-menu .dropdown > a::after {
+  display: none !important; }
 
 /******************************
  Mid Bar
