@@ -8,6 +8,7 @@
 
 /image/cache/*
 /image/catalog/produtos/*
+/image/catalog/cache/*
 
 
 #Removendo arquivos inúteis do journal3
