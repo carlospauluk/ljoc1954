@@ -15,7 +15,7 @@ $_['text_empty']         = 'Você não possui endereços vinculados a sua conta.
 // Entry
 $_['entry_firstname']    = 'Nome';
 $_['entry_lastname']     = 'Sobrenome';
-$_['entry_company']      = 'Tipo de Endereço (Casa, apto, etc)';
+$_['entry_company']      = 'Tipo (Casa, Apto, etc)';
 $_['entry_address_1']    = 'Endereço';
 $_['entry_address_2']    = 'Bairro';
 $_['entry_postcode']     = 'CEP';
