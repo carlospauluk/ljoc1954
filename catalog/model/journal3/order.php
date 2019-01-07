@@ -27,7 +27,10 @@ class ModelJournal3Order extends Model {
 			$order_data['lastname'] = $this->customer->getLastName();
 			$order_data['email'] = $this->customer->getEmail();
 			$order_data['telephone'] = $this->customer->getTelephone();
-			$order_data['custom_field'] = array();
+
+			$this->load->model('account/customer');
+			$customer_info = $this->model_account_customer->getCustomer($this->customer->getId());
+			$order_data['custom_field'] = json_decode($customer_info['custom_field'], true);
 
 			if ($this->journal3->isOC2()) {
 				$order_data['fax'] = $this->customer->getFax();

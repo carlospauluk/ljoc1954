@@ -12,7 +12,7 @@
         <div class="name"><a href="{{ product.href }}">{{ product.name }}</a></div>
       {% endif %}
       <div class="image">
-        {% if j3.settings.get('quickviewStatus') and not j3.document.isPhone() %}
+        {% if j3.settings.get('quickviewStatus') %}
           <div class="quickview-button">
             <a class="btn btn-quickview" {% if j3.settings.getIn(prefix ~ 'QuickviewDisplay', _context) == 'icon' and j3.settings.getIn(prefix ~ 'QuickviewTooltipStatus', _context) %}data-toggle="tooltip" data-tooltip-class="{{ module_id ? 'module-products-' ~ module_id ~ ' module-products-grid' : 'product-grid' }} quickview-tooltip" data-placement="{{ j3.settings.getIn(prefix ~ 'QuickviewTooltipPosition', _context) }}" title="{{ j3.settings.get('quickviewText') }}"{% endif %} onclick="quickview('{{ product.product_id }}')"><span class="btn-text">{{ j3.settings.get('quickviewText') }}</span></a>
           </div>

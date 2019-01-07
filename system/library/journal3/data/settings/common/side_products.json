@@ -298,6 +298,22 @@
     "value": "true",
     "rules": {
       "true": {
+        ".side-product .price": "display:block"
+      },
+      "false": {
+        ".side-product .price": "display:none"
+      }
+    }
+  },
+  "PriceTaxFont": {
+    "type": "Font",
+    "selector": ".side-product .price-tax"
+  },
+  "PriceTaxStatus": {
+    "type": "Toggle",
+    "value": "false",
+    "rules": {
+      "true": {
         ".side-product .price-tax": "display:block"
       },
       "false": {
@@ -410,10 +426,10 @@
     "value": "",
     "rules": {
       "true": {
-        ".out-of-stock.side-product .btn-cart": "display:inline-flex"
+        ".out-of-stock .side-product .btn-cart": "display:inline-flex"
       },
       "false": {
-        ".out-of-stock.side-product .btn-cart": "display:none"
+        ".out-of-stock .side-product .btn-cart": "display:none"
       }
     }
   },
@@ -458,8 +474,6 @@
 
 
 
-
-
   "WishlistStatus": {
     "type": "Toggle",
     "rules": {
@@ -476,10 +490,10 @@
     "value": "",
     "rules": {
       "true": {
-        ".out-of-stock.side-product .btn-wishlist": "display:inline-flex"
+        ".out-of-stock .side-product .btn-wishlist": "display:inline-flex"
       },
       "false": {
-        ".out-of-stock.side-product .btn-wishlist": "display:none"
+        ".out-of-stock .side-product .btn-wishlist": "display:none"
       }
     }
   },
@@ -539,10 +553,10 @@
     "value": "",
     "rules": {
       "true": {
-        ".out-of-stock.side-product .btn-compare": "display:inline-flex"
+        ".out-of-stock .side-product .btn-compare": "display:inline-flex"
       },
       "false": {
-        ".out-of-stock.side-product .btn-compare": "display:none"
+        ".out-of-stock .side-product .btn-compare": "display:none"
       }
     }
   },

@@ -53,7 +53,7 @@
         ".mobile-header-active .mobile-header .mobile-top-bar": "justify-content:flex-end"
       },
       "apart": {
-        ".mobile-header-active .mobile-header .mobile-top-bar": "justify-content:space-apart"
+        ".mobile-header-active .mobile-header .mobile-top-bar": "justify-content:space-between"
       }
     }
   }

@@ -839,9 +839,33 @@
                 foreach($this->journal3->productBlocks($product_info, $product_info['price'], $product_info['special']) as $module_id => $module_data) {
                     if ($module_data['position'] === 'quickview' && $this->journal3->document->isPopup()) {
                         $data['product_blocks']['default'][] = $this->load->controller('journal3/product_blocks', array('module_id' => $module_id, 'module_type' => 'product_blocks', 'product_info' => $product_info));
+                    } else if ($module_data['position'] === 'quickview_details' && $this->journal3->document->isPopup()) {
+                        $data['product_blocks']['bottom'][] = $this->load->controller('journal3/product_blocks', array('module_id' => $module_id, 'module_type' => 'product_blocks', 'product_info' => $product_info));
+                    } else if ($module_data['position'] === 'quickview_image' && $this->journal3->document->isPopup()) {
+                        $data['product_blocks']['image'][] = $this->load->controller('journal3/product_blocks', array('module_id' => $module_id, 'module_type' => 'product_blocks', 'product_info' => $product_info));
                     } else if (!$this->journal3->document->isPopup()) {
                         $data['product_blocks'][$module_data['position']][] = $this->load->controller('journal3/product_blocks', array('module_id' => $module_id, 'module_type' => 'product_blocks', 'product_info' => $product_info));
                     }
+                }
+
+                $product_tabs = array();
+
+                $product_tabs_position = $this->journal3->settings->get('productPageStyleProductTabsPosition');
+
+                foreach($this->journal3->productTabs($product_info, $product_info['price'], $product_info['special']) as $module_id => $module_data) {
+                    if ($product_tabs_position === 'quickview' && $this->journal3->document->isPopup()) {
+                        $product_tabs['default'][] = $this->load->controller('journal3/product_tabs', array('module_id' => $module_id, 'module_type' => 'product_tabs', 'product_info' => $product_info));
+                    } else if ($product_tabs_position === 'quickview_details' && $this->journal3->document->isPopup()) {
+                        $product_tabs['bottom'][] = $this->load->controller('journal3/product_tabs', array('module_id' => $module_id, 'module_type' => 'product_tabs', 'product_info' => $product_info));
+                    } else if ($product_tabs_position === 'quickview_image' && $this->journal3->document->isPopup()) {
+                        $product_tabs['image'][] = $this->load->controller('journal3/product_tabs', array('module_id' => $module_id, 'module_type' => 'product_tabs', 'product_info' => $product_info));
+                    } else if (!$this->journal3->document->isPopup()) {
+                        $product_tabs[$product_tabs_position][] = $this->load->controller('journal3/product_tabs', array('module_id' => $module_id, 'module_type' => 'product_tabs', 'product_info' => $product_info));
+                    }
+                }
+
+                foreach ($product_tabs as $position => &$items) {
+                    $data['product_blocks'][$position][] = $this->load->controller('journal3/product_tabs/tabs', array('items' => $items, 'position' => $position));
                 }
 
                 $this->load->model('catalog/manufacturer');
@@ -1537,6 +1561,19 @@
                     }
                 }
                 // End Journal Theme Modification
+            ]]></add>
+        </operation>
+    </file>
+
+    <!-- blog sitemaps -->
+
+    <file path="catalog/controller/extension/feed/google_sitemap.php">
+        <operation>
+            <search><![CDATA[$output .= '</urlset>';]]></search>
+            <add position="before"><![CDATA[
+            if (defined('JOURNAL3_ACTIVE')) {
+                $output .= $this->journal3->loadController('journal3/blog/google_sitemap');
+            }
             ]]></add>
         </operation>
     </file>

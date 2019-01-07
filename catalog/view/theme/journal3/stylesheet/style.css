@@ -465,7 +465,8 @@ footer {
 .safari .module-banners a,
 .safari .module-gallery a,
 .safari .category-thumb a,
-.safari .manufacturer-thumb a {
+.safari .manufacturer-thumb a,
+.safari .product-grid .product-thumb {
   -webkit-mask-image: -webkit-radial-gradient(white, black); }
 
 /******************************
@@ -3933,6 +3934,8 @@ https://www.journal-theme.com/
 
 .module-notification {
   width: 100%; }
+  .module-notification .notification-content {
+    display: block; }
   .module-notification .notification-close {
     -webkit-box-align: center;
         -ms-flex-align: center;
@@ -4795,6 +4798,9 @@ https://www.journal-theme.com/
         line-height: 1; }
       .icons-menu > ul > .menu-item > a::after {
         display: none; }
+
+.icons-menu .icon-menu-image a::before {
+  display: none; }
 
 /******************************
 
@@ -5919,7 +5925,9 @@ https://www.journal-theme.com/
       top: 0;
       pointer-events: none;
       -webkit-transition: all 0.15s ease-out;
-      transition: all 0.15s ease-out; }
+      transition: all 0.15s ease-out;
+      -webkit-transform: translateZ(0.3px);
+              transform: translateZ(0.3px); }
   .module-master_slider .ms-view {
     background: transparent; }
   .module-master_slider .ms-layer-video {
@@ -6059,7 +6067,8 @@ https://www.journal-theme.com/
     transition: all 0.1s ease-out;
     opacity: 1;
     margin-right: 0 !important;
-    position: relative; }
+    position: relative;
+    z-index: 1; }
     .module-master_slider .ms-thumb-frame:hover {
       opacity: 1 !important; }
   .module-master_slider .ms-thumb-frame-selected {
@@ -6792,7 +6801,7 @@ header {
     content: "";
     z-index: 0; }
   .desktop-header-active header .top-bar {
-    z-index: 4;
+    z-index: 1001;
     position: relative; }
   .desktop-header-active .header-default > div {
     height: 100%; }

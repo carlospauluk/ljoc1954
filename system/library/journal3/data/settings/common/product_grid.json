@@ -768,24 +768,24 @@
     "value": "start",
     "rules": {
       "start": {
-        ".product-thumb .price": "margin-left:0; margin-right:auto"
+        ".product-thumb .price": "margin-left:0; margin-right:auto; text-align:lef"
       },
       "center": {
-        ".product-thumb .price": "margin-left: auto; margin-right: auto"
+        ".product-thumb .price": "margin-left: auto; margin-right: auto; text-align:center"
       },
       "end": {
-        ".product-thumb .price": "margin-left:auto; margin-right:0"
+        ".product-thumb .price": "margin-left:auto; margin-right:0; text-align:right"
       }
     },
     "rtlRules": {
       "start": {
-        ".product-thumb .price": "margin-left:auto; margin-right:0"
+        ".product-thumb .price": "margin-left:auto; margin-right:0; text-align:right"
       },
       "center": {
-        ".product-thumb .price": "margin-left: auto; margin-right: auto"
+        ".product-thumb .price": "margin-left: auto; margin-right: auto; text-align:center"
       },
       "end": {
-        ".product-thumb .price": "margin-left:0; margin-right:auto"
+        ".product-thumb .price": "margin-left:0; margin-right:auto; text-align:left"
       }
     }
   },

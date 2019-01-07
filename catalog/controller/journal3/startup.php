@@ -159,6 +159,7 @@ class ControllerJournal3Startup extends Controller {
 			$this->load->controller('journal3/product/extras', array('module_type' => 'product_label'));
 			$this->load->controller('journal3/product/extras', array('module_type' => 'product_extra_button'));
 			$this->load->controller('journal3/product/extras', array('module_type' => 'product_blocks'));
+			$this->load->controller('journal3/product/extras', array('module_type' => 'product_tabs'));
 			$this->load->controller('journal3/product/second_image');
 			$this->load->controller('journal3/product/countdown');
 

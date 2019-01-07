@@ -139,10 +139,16 @@
     "type": "Toggle",
     "rules": {
       "true": {
-        ".cart-table .td-model": "display: table-cell"
+        ".cart-table .td-model": "display: table-cell",
+        ".route-account-order-info .table-responsive table thead > tr > td:nth-child(2)":"display:table-cell",
+        ".route-account-order-info .table-responsive table tbody > tr > td:nth-child(2)":"display:table-cell",
+        ".route-account-order-info .table-responsive table tfoot > tr > td:last-child":"display:table-cell"
       },
       "false": {
-        ".cart-table .td-model": "display: none"
+        ".cart-table .td-model": "display: none",
+        ".route-account-order-info .table-responsive table thead > tr > td:nth-child(2)":"display:none",
+        ".route-account-order-info .table-responsive table tbody > tr > td:nth-child(2)":"display:none",
+        ".route-account-order-info .table-responsive table tfoot > tr > td:last-child":"display:none"
       }
     }
   },

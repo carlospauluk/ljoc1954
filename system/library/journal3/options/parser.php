@@ -262,7 +262,9 @@ class Parser {
 			$css = array();
 
 			foreach ($selectors as $selector => $properties) {
-				$css[] = $selector . " {\n\t" . implode($properties, "; \n\t") . "\n" . ($is_media ? "\t" : '') . "}" . ($is_media ? '' : "\n");
+				if ($selector && $properties) {
+					$css[] = $selector . " {\n\t" . implode($properties, "; \n\t") . "\n" . ($is_media ? "\t" : '') . "}" . ($is_media ? '' : "\n");
+				}
 			}
 
 			if (!$css) {

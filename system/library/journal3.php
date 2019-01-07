@@ -9,7 +9,7 @@ use Journal3\Utils\Html;
 use Journal3\Utils\Request;
 use Journal3\Utils\Str;
 
-define('JOURNAL3_VERSION', '3.0.18');
+define('JOURNAL3_VERSION', '3.0.19');
 
 if (!defined('JOURNAL3_OC_VERSION')) {
 	if (version_compare(VERSION, '3.1', '>=')) {
@@ -399,6 +399,40 @@ final class Journal3 {
 
 			foreach ($product_block_ids as $product_block_id) {
 				$results[$product_block_id] = Arr::get($this->product_data, 'product_blocks.data.' . $product_block_id . '.php');
+			}
+		}
+
+		return $results;
+	}
+
+	public function productTabs($result, $price, $special) {
+		$results = array();
+
+		$product_tab_ids = Arr::get($this->product_data, 'product_tabs.all', array());
+
+		foreach ($product_tab_ids as $product_tab_id) {
+			$results[$product_tab_id] = Arr::get($this->product_data, 'product_tabs.data.' . $product_tab_id . '.php');
+		}
+
+		$product_tab_ids = Arr::get($this->product_data, 'product_tabs.custom.' . $result['product_id'], array());
+
+		foreach ($product_tab_ids as $product_tab_id) {
+			$results[$product_tab_id] = Arr::get($this->product_data, 'product_tabs.data.' . $product_tab_id . '.php');
+		}
+
+		if ($special) {
+			$product_tab_ids = Arr::get($this->product_data, 'product_tabs.special', array());
+
+			foreach ($product_tab_ids as $product_tab_id) {
+				$results[$product_tab_id] = Arr::get($this->product_data, 'product_tabs.data.' . $product_tab_id . '.php');
+			}
+		}
+
+		if ($result['quantity'] <= 0) {
+			$product_tab_ids = Arr::get($this->product_data, 'product_tabs.outofstock', array());
+
+			foreach ($product_tab_ids as $product_tab_id) {
+				$results[$product_tab_id] = Arr::get($this->product_data, 'product_tabs.data.' . $product_tab_id . '.php');
 			}
 		}
 

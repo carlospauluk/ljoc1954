@@ -105,7 +105,8 @@ class ControllerJournal3Settings extends Controller {
 
 			$cache['php'] += $parser->getPhp();
 			$cache['js'] += $parser->getJs();
-			$cache['fonts'] += $parser->getFonts();
+			$fonts = $parser->getFonts();
+			$cache['fonts'] = Arr::merge($cache['fonts'], $fonts);
 			$cache['css'] .= $parser->getCss();
 
 			// desktop header
@@ -127,7 +128,8 @@ class ControllerJournal3Settings extends Controller {
 				$cache['php'] += $parser->getPhp();
 				$cache['js'] += $parser->getJs();
 				$cache['js']['headerType'] = $cache['php']['headerType'];
-				$cache['fonts'] += $parser->getFonts();
+				$fonts = $parser->getFonts();
+				$cache['fonts'] = Arr::merge($cache['fonts'], $fonts);
 				$cache['css'] .= $parser->getCss();
 			}
 
@@ -149,7 +151,8 @@ class ControllerJournal3Settings extends Controller {
 				$cache['php']['mobileHeaderType'] = str_replace('header_mobile_', '', $module_type);
 				$cache['php'] += $parser->getPhp();
 				$cache['js'] += $parser->getJs();
-				$cache['fonts'] += $parser->getFonts();
+				$fonts = $parser->getFonts();
+				$cache['fonts'] = Arr::merge($cache['fonts'], $fonts);
 				$cache['css'] .= $parser->getCss();
 			}
 

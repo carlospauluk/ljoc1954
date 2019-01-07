@@ -184,7 +184,7 @@ class ControllerJournal3Blocks extends ModuleController {
 			$product_info = $this->model_catalog_product->getProduct($this->request->get['product_id']);
 
 			// desc
-			static::$PRODUCT_INFO['description'] = html_entity_decode($product_info['description'], ENT_QUOTES, 'UTF-8');
+			static::$PRODUCT_INFO['description'] = html_entity_decode(Arr::get($product_info, 'description'), ENT_QUOTES, 'UTF-8');
 
 			if (!trim(strip_tags(static::$PRODUCT_INFO['description'], '<img>'))) {
 				static::$PRODUCT_INFO['description'] = '';
@@ -210,7 +210,7 @@ class ControllerJournal3Blocks extends ModuleController {
 			$data['button_continue'] = $this->language->get('button_continue');
 
 			$data['text_login'] = sprintf($this->language->get('text_login'), $this->url->link('account/login', '', true), $this->url->link('account/register', '', true));
-			$data['tab_review'] = sprintf($this->language->get('tab_review'), $product_info['reviews']);
+			$data['tab_review'] = sprintf($this->language->get('tab_review'), Arr::get($product_info, 'reviews'));
 
 			$data['review_status'] = $this->config->get('config_review_status');
 
@@ -226,7 +226,7 @@ class ControllerJournal3Blocks extends ModuleController {
 				$data['customer_name'] = '';
 			}
 
-			$data['reviews'] = sprintf($this->language->get('text_reviews'), (int)$product_info['reviews']);
+			$data['reviews'] = sprintf($this->language->get('text_reviews'), (int)Arr::get($product_info, 'reviews'));
 			$data['rating'] = (int)$product_info['rating'];
 
 			// Captcha
@@ -259,7 +259,7 @@ class ControllerJournal3Blocks extends ModuleController {
 			$category_info = $this->model_catalog_category->getCategory($category_id);
 
 			// desc
-			static::$CATEGORY_INFO['description'] = html_entity_decode($category_info['description'], ENT_QUOTES, 'UTF-8');
+			static::$CATEGORY_INFO['description'] = html_entity_decode(Arr::get($category_info, 'description'), ENT_QUOTES, 'UTF-8');
 
 			if (!trim(strip_tags(static::$CATEGORY_INFO['description'], '<img>'))) {
 				static::$CATEGORY_INFO['description'] = '';

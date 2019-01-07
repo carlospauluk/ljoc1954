@@ -12,7 +12,7 @@ class ProductFilter extends Option {
 			'order'  => 'ASC',
 			'start'  => 0,
 			'limit'  => 10,
-			'preset' => Arr::get($value, 'preset', 'latest'),
+			'preset' => Arr::get($value, 'preset', 'all'),
 		);
 
 		switch ($result['preset']) {

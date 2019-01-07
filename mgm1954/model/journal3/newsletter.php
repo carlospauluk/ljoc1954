@@ -20,6 +20,7 @@ class ModelJournal3Newsletter extends Model {
 				'id'       => $row['newsletter_id'],
 				'name'     => $row['name'],
 				'email'    => $row['email'],
+				'ip'       => $row['ip'],
 				'store_id' => $row['store_id'],
 			);
 		}

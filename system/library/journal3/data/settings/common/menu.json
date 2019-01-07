@@ -39,7 +39,6 @@
       }
     }
   },
-
   "Font": {
     "type": "Font",
     "selector": ".j-menu > li > a"

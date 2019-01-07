@@ -233,6 +233,7 @@ class ModelJournal3Product extends Model {
 		$sql = "
 			SELECT * 
 			FROM `{$this->dbPrefix('product')}` p
+			LEFT JOIN `{$this->dbPrefix('product_description')}` pd ON (p.product_id = pd.product_id)
 			LEFT JOIN `{$this->dbPrefix('product_to_store')}` p2s ON (p.product_id = p2s.product_id)
 			LEFT JOIN `{$this->dbPrefix('product_to_category')}` p2c ON (p.product_id = p2c.product_id)
 			LEFT JOIN `{$this->dbPrefix('category')}` c ON (c.category_id = p2c.category_id) 
@@ -241,6 +242,7 @@ class ModelJournal3Product extends Model {
 				c.category_id IN (" . implode(', ', $category_ids) . ") 
 				AND p.status = '1'
 				AND p.date_available <= NOW()
+				AND pd.language_id = '" . (int)$this->config->get('config_language_id') . "'
 				AND p2s.store_id = '{$this->dbEscapeInt($this->config->get('config_store_id'))}'
 				AND c.status = '1'
 				AND c2s.store_id = '{$this->dbEscapeInt($this->config->get('config_store_id'))}'
@@ -289,11 +291,13 @@ class ModelJournal3Product extends Model {
 		$sql = "
 			SELECT * 
 			FROM `{$this->dbPrefix('product')}` p
+			LEFT JOIN `{$this->dbPrefix('product_description')}` pd ON (p.product_id = pd.product_id)
 			LEFT JOIN `{$this->dbPrefix('product_to_store')}` p2s ON (p.product_id = p2s.product_id)
 			WHERE 
 				p.manufacturer_id = '{$this->dbEscapeInt($manufacturer_id)}' 
 				AND p.status = '1'
 				AND p.date_available <= NOW()
+				AND pd.language_id = '" . (int)$this->config->get('config_language_id') . "'
 				AND p2s.store_id = '{$this->dbEscapeInt($this->config->get('config_store_id'))}'
 				AND p.product_id != '{$this->dbEscapeInt($product_id)}'
 		";

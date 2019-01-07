@@ -31,6 +31,9 @@
             {% else %}
               <span class="price-normal">{{ product.price }}</span>
             {% endif %}
+            {% if product.tax %}
+              <span class="price-tax">{{ text_tax }}{{ product.tax }}</span>
+            {% endif %}
           </div>
         {% endif %}
 

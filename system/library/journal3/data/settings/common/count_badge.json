@@ -7,7 +7,8 @@
     "type": "Color",
     "selector": "a:hover .count-badge",
     "property": "color",
-    "desktop":true
+    "desktop":true,
+    "important": true
   },
   "Background": {
     "type": "Background",
@@ -16,6 +17,7 @@
   "BackgroundHover": {
     "type": "Background",
     "selector": "a:hover .count-badge",
+    "important": true,
     "desktop":true
   },
   "Shadow": {
@@ -25,7 +27,8 @@
   "ShadowHover": {
     "type": "Shadow",
     "selector": "a:hover .count-badge",
-    "desktop":true
+    "desktop":true,
+    "important": true
   },
   "Border": {
     "type": "Border",
@@ -35,7 +38,8 @@
     "type": "Color",
     "selector": "a:hover .count-badge",
     "property": "border-color",
-    "desktop":true
+    "desktop":true,
+    "important": true
   },
   "BorderRadius": {
     "type": "BorderRadius",

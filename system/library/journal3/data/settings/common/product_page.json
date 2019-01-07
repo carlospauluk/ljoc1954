@@ -1801,5 +1801,21 @@
     "type": "Padding",
     "selector": ".route-product-product:not(.popup) .product-info .button-group-page .wishlist-compare .btn-compare",
     "important": true
+  },
+
+  "ProductTabsStyle": {
+    "type": "Variable",
+    "variable": "tabs",
+    "selector_prefix": ".product_tabs"
+  },
+  "ProductTabsPosition": {
+    "type": "Radio",
+    "value": "default",
+    "php": true
+  },
+  "ProductTabsSortOrder": {
+    "type": "InputNumber",
+    "selector": ".product_tabs",
+    "property": "order:%s"
   }
 }

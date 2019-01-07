@@ -73,14 +73,15 @@ class Cache {
 	public static function getKey() {
 		if (static::$key === null) {
 			static::$key = sprintf(
-				"%s_%s_s%d_l%d_c%s_c%d_g%d",
+				"%s_%s_s%d_l%d_c%s_c%d_g%d_%s",
 				substr(md5(Request::getHost()), 0, 10),
 				static::$config['device'],
 				static::$config['store_id'],
 				static::$config['language_id'],
 				static::$config['currency_id'],
 				static::$config['customer'],
-				static::$config['customer_group_id']
+				static::$config['customer_group_id'],
+				JOURNAL3_VERSION
 			);
 		}
 

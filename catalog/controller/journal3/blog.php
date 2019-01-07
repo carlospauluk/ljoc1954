@@ -19,7 +19,7 @@ class ControllerJournal3Blog extends Controller {
 
 	public function index() {
 		if (!$this->model_journal3_blog->isEnabled()) {
-			$this->response->redirect('index.php?route=error/not_found');
+			$this->response->redirect($this->url->link($this->config->get('action_error')));
 			exit();
 		}
 
@@ -60,9 +60,9 @@ class ControllerJournal3Blog extends Controller {
 
 			$data['heading_title'] = $this->journal3->settings->get('blogPageTitle');
 
-			$this->document->setTitle($this->journal3->settings->get('blogPageTitle'));
-			$this->document->setDescription($this->journal3->settings->get('blogPageTitle'));
-			$this->document->setKeywords($this->journal3->settings->get('blogPageTitle'));
+			$this->document->setTitle($this->journal3->settings->get('blogPageMetaTitle'));
+			$this->document->setDescription($this->journal3->settings->get('blogPageMetaDescription'));
+			$this->document->setKeywords($this->journal3->settings->get('blogPageMetaKeyword'));
 		}
 
 		if ($category_id && !$category_info) {
@@ -246,7 +246,7 @@ class ControllerJournal3Blog extends Controller {
 
 	public function post() {
 		if (!$this->model_journal3_blog->isEnabled()) {
-			$this->response->redirect('index.php?route=error/not_found');
+			$this->response->redirect($this->url->link($this->config->get('action_error')));
 			exit();
 		}
 
@@ -472,15 +472,15 @@ class ControllerJournal3Blog extends Controller {
 				$data['website'] = preg_replace('#^https?://#', '', $data['website']);
 			}
 
-			$data['avatar'] = '';
+			$data['avatar'] = md5(strtolower(trim($email)));
 
 			$this->renderJson('success', array(
 				'data'    => $data,
-				'message' => $this->journal3->settings->get('blog_form_comment_submitted', 'Comment submitted.'),
+				'message' => $this->journal3->settings->get('blogCommentSubmitText'),
 			));
 		} else {
 			$this->renderJson('success', array(
-				'message' => $this->journal3->settings->get('blog_form_comment_awaiting_approval', 'Comment awaiting approval.'),
+				'message' => $this->journal3->settings->get('blogCommentApprovalText'),
 			));
 		}
 
@@ -488,7 +488,7 @@ class ControllerJournal3Blog extends Controller {
 
 	public function feed() {
 		if (!$this->model_journal3_blog->isEnabled()) {
-			$this->response->redirect('index.php?route=error/not_found');
+			$this->response->redirect($this->url->link($this->config->get('action_error')));
 			exit();
 		}
 
@@ -556,5 +556,35 @@ class ControllerJournal3Blog extends Controller {
 		}
 
 		return $result;
+	}
+
+	public function google_sitemap() {
+		if (!$this->model_journal3_blog->isEnabled()) {
+			return null;
+		}
+
+		$output = '';
+
+		$results = $this->model_journal3_blog->getCategories();
+
+		foreach ($results as $result) {
+			$output .= '<url>';
+			$output .= '<loc>' . $this->url->link('journal3/blog', 'journal_blog_category_id=' . $result['category_id']) . '</loc>';
+			$output .= '<changefreq>weekly</changefreq>';
+			$output .= '<priority>0.7</priority>';
+			$output .= '</url>';
+
+			$posts = $this->model_journal3_blog->getPosts(array('category_id' => $result['category_id']));
+
+			foreach ($posts as $post) {
+				$output .= '<url>';
+				$output .= '<loc>' . $this->url->link('journal3/blog/post', 'journal_blog_category_id=' . $result['category_id'] . '&journal_blog_post_id=' . $post['post_id']) . '</loc>';
+				$output .= '<changefreq>weekly</changefreq>';
+				$output .= '<priority>1.0</priority>';
+				$output .= '</url>';
+			}
+		}
+
+		return $output;
 	}
 }

@@ -1,0 +1,25 @@
+<div class="tabs-container {{ j3.classes(classes) }}">
+  <ul class="nav nav-tabs">
+    {% for item in items %}
+      <li class="{{ j3.classes(item.tab_classes) }}">
+        <a href="#{{ item.id }}" data-toggle="tab">{{ item.title }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+  <div class="tab-content">
+    {% for item in items %}
+      <div class="{{ j3.classes(item.classes) }}" id="{{ item.id }}">
+        <div class="block-body expand-block">
+        <div class="block-wrapper">
+          <div class="block-content {% if item.expandButton %}expand-content{% endif %}">
+            {{ item.content }}
+            {% if item.expandButton %}
+              <div class="block-expand-overlay"><a class="block-expand btn"></a></div>
+            {% endif %}
+          </div>
+        </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>

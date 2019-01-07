@@ -9,7 +9,7 @@
     <span >
       {{ heading_title }}
       {% if feed_url %}
-        <a class="blog-feed" href="{{ feed_url }}" target="_blank"><span class="feed-text">RSS Feed</span></a>
+        <a class="blog-feed" href="{{ feed_url }}" target="_blank"><span class="feed-text">{{ j3.settings.get('blogFeedText') }}</span></a>
       {% endif %}
     </span>
   </h1>
@@ -22,7 +22,7 @@
         <h1 class="title page-title">
           {{ heading_title }}
           {% if feed_url %}
-            <a class="blog-feed" href="{{ feed_url }}" target="_blank"><span class="feed-text">RSS Feed</span></a>
+            <a class="blog-feed" href="{{ feed_url }}" target="_blank"><span class="feed-text">{{ j3.settings.get('blogFeedText') }}</span></a>
           {% endif %}
         </h1>
       {% endif %}

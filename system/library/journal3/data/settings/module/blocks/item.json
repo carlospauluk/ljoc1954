@@ -220,8 +220,7 @@
     "php": true
   },
   "content": {
-    "type": "InputLang",
-    "value": "code"
+    "type": "InputLang"
   },
   "shortDescriptionLimit": {
     "type": "Input",

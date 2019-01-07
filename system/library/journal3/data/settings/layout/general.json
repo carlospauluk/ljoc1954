@@ -46,7 +46,8 @@
         "header": "display: block !important"
       },
       "false": {
-        "header": "display: none !important"
+        "header": "display: none !important",
+        "body": "padding:0 !important"
       }
     }
   },

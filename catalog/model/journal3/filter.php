@@ -344,7 +344,7 @@ class ModelJournal3Filter extends Model {
 		$sql .= " 
 			GROUP BY m.manufacturer_id 
 			HAVING COUNT(*) > 0 
-			ORDER BY m.name, m.sort_order ASC
+			ORDER BY m.sort_order ASC, m.name ASC
 		";
 
 		return $this->dbQuery($sql, 'MANUFACTURERS')->rows;
@@ -512,7 +512,7 @@ class ModelJournal3Filter extends Model {
 					LEFT JOIN `" . DB_PREFIX . "option_description` od ON (pov.option_id = od.option_id)
 				";
 
-				$sql .= $this->addFilters(static::$filter_data, 'options');
+				$sql .= $this->addFilters($filter_data, 'options');
 
 				$sql .= "
 						AND od.language_id = '" . (int)$this->config_language_id . "' 
@@ -614,7 +614,7 @@ class ModelJournal3Filter extends Model {
 					LEFT JOIN `" . DB_PREFIX . "filter_group_description` fgd ON (fd.filter_group_id = fgd.filter_group_id)
 				";
 
-				$sql .= $this->addFilters(static::$filter_data, 'filters');
+				$sql .= $this->addFilters($filter_data, 'filters');
 
 				$sql .= "
 						AND fd.language_id = '" . (int)$this->config_language_id . "' 
@@ -625,8 +625,9 @@ class ModelJournal3Filter extends Model {
 
 				$query = $this->dbQuery($sql, 'FILTERS');
 
+
 				foreach ($query->rows as $row) {
-					if ($row['filter_id'] == $filter_id) {
+					if ($row['filter_group_id'] == $filter_id) {
 						$results[$row['filter_group_id']]['values'][$row['id']] = array(
 							'id'    => $row['id'],
 							'value' => $row['filter_name'],
@@ -1038,15 +1039,15 @@ class ModelJournal3Filter extends Model {
 				$quantity = null;
 
 				if (is_array($availability) && count($availability) === 1) {
-					if ($availability[0] === '0') {
+					if ($availability[0] === 0) {
 						$quantity = false;
-					} else if ($availability[0] === '1') {
+					} else if ($availability[0] === 1) {
 						$quantity = true;
 					}
 				} else {
-					if ($availability === '0') {
+					if ($availability === 0) {
 						$quantity = false;
-					} else if ($availability === '1') {
+					} else if ($availability === 1) {
 						$quantity = true;
 					}
 				}

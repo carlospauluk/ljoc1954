@@ -1676,7 +1676,7 @@
     Fullscreen.prototype.destroy = function() {
 
         // exit from fullscreen if activated
-        this.exitFullscreen();
+        // this.exitFullscreen();
 
         $(document).off('fullscreenchange.lg webkitfullscreenchange.lg mozfullscreenchange.lg MSFullscreenChange.lg');
     };

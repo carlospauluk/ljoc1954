@@ -451,6 +451,9 @@ class ModelJournal3Blog extends Model {
 				$comment['website'] = trim($comment['website'], '/');
 				$comment['website'] = parse_url($comment['website'], PHP_URL_SCHEME) !== null ? $comment['website'] : ('http://' . $comment['website']);
 			}
+
+			$comment['avatar'] = md5(strtolower(trim($comment['email'])));
+
 			$comment['replies'] = isset($replies[$comment['comment_id']]) ? $replies[$comment['comment_id']] : array();
 		}
 
@@ -537,7 +540,7 @@ class ModelJournal3Blog extends Model {
             	AND pd.language_id = '{$this->dbEscapeInt($this->config->get('config_language_id'))}'
             	AND p2s.store_id = '{$this->dbEscapeInt($this->config->get('config_store_id'))}'
             ORDER BY
-            	date ASC
+            	date DESC
             LIMIT
             	{$this->dbEscapeInt($limit)}
         ");

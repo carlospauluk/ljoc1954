@@ -7,6 +7,11 @@
     "type": "Toggle",
     "php": true
   },
+  "blogFeedText": {
+    "type": "InputLang",
+    "value": "RSS Feed",
+    "php": true
+  },
   "blogPageTitle": {
     "type": "InputLang",
     "value": "Blog",
@@ -91,6 +96,16 @@
   "blogLeaveReplyText": {
     "type": "InputLang",
     "value": "Leave a Reply",
+    "php": true
+  },
+  "blogCommentSubmitText": {
+    "type": "InputLang",
+    "value": "Comment submitted",
+    "php": true
+  },
+  "blogCommentApprovalText": {
+    "type": "InputLang",
+    "value": "Comment awaiting approval",
     "php": true
   },
   "blogDateFormat": {

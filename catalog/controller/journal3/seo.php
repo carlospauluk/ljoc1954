@@ -172,17 +172,37 @@ class ControllerJournal3Seo extends Controller {
 				"model"       => static::getTags('model'),
 				'offers'      =>
 					array(
-						'@type'         => 'Offer',
-						'priceCurrency' => static::getTags('priceCurrency'),
-						'price'         => static::getTags('price'),
-						'itemCondition' => 'http://schema.org/NewCondition',
-						'availability'  => static::getTags('stock') ? 'http://schema.org/InStock' : 'http://schema.org/OutOfStock',
-						'seller'        => array(
+						'@type'           => 'Offer',
+						'priceCurrency'   => static::getTags('priceCurrency'),
+						'price'           => static::getTags('price'),
+						'itemCondition'   => 'http://schema.org/NewCondition',
+						'availability'    => static::getTags('stock') ? 'http://schema.org/InStock' : 'http://schema.org/OutOfStock',
+						'seller'          => array(
 							'@type' => 'Organization',
 							'name'  => self::getTags('site_title'),
 						),
+						'priceValidUntil' => static::getTags('date_end'),
+						'url'             => static::getTags('url'),
 					),
 			);
+
+			if (static::getTags('reviews')) {
+				$review = static::getTags('reviews');
+				$json['review'] = array(
+					"@type"         => "Review",
+					"reviewRating"  => array(
+						"@type"       => "Rating",
+						"ratingValue" => $review[0]['rating'],
+					),
+					"name"          => $review[0]['name'],
+					"author"        => array(
+						"@type" => "Person",
+						"name"  => $review[0]['author'],
+					),
+					"datePublished" => $review[0]['date_added'],
+					"reviewBody"    => $review[0]['text'],
+				);
+			}
 
 			if (static::getTags('brand')) {
 				$json['brand'] = array(
@@ -280,6 +300,25 @@ class ControllerJournal3Seo extends Controller {
 							static::$tags['brand'] = $product_info['manufacturer'];
 							static::$tags['ratingCount'] = $product_info['reviews'];
 							static::$tags['ratingValue'] = $product_info['rating'];
+							static::$tags['date_end'] = date('Y-m-d', strtotime('+1 year'));
+
+							$query = $this->db->query("
+								SELECT r.review_id, r.author, r.rating, r.text, p.product_id, pd.name, p.price, p.image, r.date_added 
+								FROM " . DB_PREFIX . "review r 
+								LEFT JOIN " . DB_PREFIX . "product p ON (r.product_id = p.product_id) 
+								LEFT JOIN " . DB_PREFIX . "product_description pd ON (p.product_id = pd.product_id) 
+								WHERE 
+									p.product_id = '" . (int)$id . "' 
+									AND p.date_available <= NOW() 
+									AND p.status = '1' 
+									AND r.status = '1' 
+									AND pd.language_id = '" . (int)$this->config->get('config_language_id') . "' 
+								ORDER BY 
+									r.date_added DESC 
+								LIMIT 1
+							");
+
+							static::$tags['reviews'] = $query->rows;
 						}
 
 					}

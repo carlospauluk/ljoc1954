@@ -9,7 +9,8 @@
   },
   "globalDropdown": {
     "type": "Variable",
-    "variable": "dropdown"
+    "variable": "dropdown",
+    "selector_prefix":".dropdown"
   },
   "globalLegend": {
     "type": "Variable",

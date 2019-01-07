@@ -65,7 +65,7 @@
           {% endif %}
           {% for comment in comments %}
             <div class="post-comment" data-comment-id="{{ comment.comment_id }}" data-has-form="false">
-              <img class="user-avatar" src="https://s.gravatar.com/avatar/b003beaf5d6fd3d8267617d23b6c70cd?s={{ j3.settings.get('postCommentImageSize') }}" width="{{ j3.settings.get('postCommentImageSize') }}" height="{{ j3.settings.get('postCommentImageSize') }}" alt="">
+              <img class="user-avatar" src="https://s.gravatar.com/avatar/{{ comment.avatar }}?s={{ j3.settings.get('postCommentImageSize') }}" width="{{ j3.settings.get('postCommentImageSize') }}" height="{{ j3.settings.get('postCommentImageSize') }}" alt="">
               <div class="comment">
                 <div class="user-name">{{ comment.name }}:</div>
                 <div class="user-data">
@@ -81,7 +81,7 @@
                 <p>{{ comment.comment }}</p>
                 {% for reply in comment.replies %}
                   <div class="post-reply">
-                    <img class="user-avatar" src="https://s.gravatar.com/avatar/b003beaf5d6fd3d8267617d23b6c70cd?s={{ j3.settings.get('postCommentImageSize') }}" width="{{ j3.settings.get('postCommentImageSize') }}" height="{{ j3.settings.get('postCommentImageSize') }}" alt="">
+                    <img class="user-avatar" src="https://s.gravatar.com/avatar/{{ comment.avatar }}?s={{ j3.settings.get('postCommentImageSize') }}" width="{{ j3.settings.get('postCommentImageSize') }}" height="{{ j3.settings.get('postCommentImageSize') }}" alt="">
                     <div class="comment">
                       <div class="user-name">{{ reply.name }}:</div>
                       <div class="user-data">
@@ -157,7 +157,7 @@
               var html = '';
 
               html += '<div class="' + cls + '" data-comment-id="' + response.response.data.comment_id + '" data-has-form="false">';
-              html += ' <img class="user-avatar" src="https://s.gravatar.com/avatar/b003beaf5d6fd3d8267617d23b6c70cd?s={{ j3.settings.get('postCommentImageSize') }}" width="{{ j3.settings.get('postCommentImageSize') }}" height="{{ j3.settings.get('postCommentImageSize') }}" alt="">';
+              html += ' <img class="user-avatar" src="https://s.gravatar.com/avatar/' + response.response.data.avatar + '?s={{ j3.settings.get('postCommentImageSize') }}" width="{{ j3.settings.get('postCommentImageSize') }}" height="{{ j3.settings.get('postCommentImageSize') }}" alt="">';
               html += ' <div class="comment">';
               html += '   <div class="user-name">' + response.response.data.name + ':</div>';
               html += '   <div class="user-data">';

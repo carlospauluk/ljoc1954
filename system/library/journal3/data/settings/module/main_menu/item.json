@@ -153,18 +153,6 @@
       }
     }
   },
-  "labelOffset": {
-    "type": "InputPair",
-    "selector": ".desktop-main-menu-wrapper .main-menu-%s .main-menu-item-%s .menu-label",
-    "properties": {
-      "first": "transform: translateX(%spx)",
-      "second": "margin-top:%spx"
-    },
-    "rtlProperties": {
-      "first": "transform: translateX(0px - (%spx))",
-      "second": "margin-top:%spx"
-    }
-  },
   "iconOnly": {
     "type": "Toggle",
     "value": "false",
@@ -282,5 +270,17 @@
   "megaMenuBorder": {
     "type": "Border",
     "selector": ".desktop .main-menu-%s > .j-menu li.main-menu-item-%s .mega-menu-content"
+  },
+  "labelOffset": {
+    "type": "InputPair",
+    "selector": ".desktop-main-menu-wrapper .main-menu-%s .main-menu-item-%s .menu-label",
+    "properties": {
+      "first": "transform: translateX(%spx)",
+      "second": "margin-top:%spx !important"
+    },
+    "rtlProperties": {
+      "first": "transform: translateX(0px - (%spx))",
+      "second": "margin-top:%spx !important"
+    }
   }
 }

@@ -196,7 +196,8 @@ class ModelJournal3Journal3 extends \Journal3\Opencart\Model {
 			CREATE TABLE IF NOT EXISTS `%s` (
 				`newsletter_id` int(11) NOT NULL AUTO_INCREMENT,
 				`name` varchar(256),
-				`email` varchar(256),			  
+				`email` varchar(256),
+				`ip` varchar(40),			  
                 `store_id` INT(11),
 				PRIMARY KEY (`newsletter_id`)
 			) ENGINE=MyISAM  DEFAULT CHARSET=utf8
@@ -243,6 +244,26 @@ class ModelJournal3Journal3 extends \Journal3\Opencart\Model {
 				");
 			}
 		}
+
+		// newsletter ip log fix
+		$query = $this->db->query("DESCRIBE `{$this->dbPrefix('journal3_newsletter')}`");
+
+		$found = false;
+
+		foreach ($query->rows as $row) {
+			if ($row['Field'] === 'ip') {
+				$found = true;
+				break;
+			}
+		}
+
+		if (!$found) {
+			$this->db->query("
+				ALTER TABLE `{$this->dbPrefix('journal3_newsletter')}`
+				ADD `ip` VARCHAR(40) NOT NULL AFTER `email`
+			");
+		}
+
 	}
 
 	public function isInstalled() {

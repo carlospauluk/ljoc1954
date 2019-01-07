@@ -7,9 +7,9 @@
         {{ j3.countBadge(item.title, item.link.total, item.link.classes) }}
         {% if item.items %}
           {% if item.isOpen %}
-            <span class="open-menu" data-toggle="collapse" data-target="#{{ id }}" aria-expanded="true"><i class="fa fa-plus"></i></span>
+            <span class="open-menu" data-toggle="collapse" data-target="#{{ id }}" aria-expanded="true" role="heading"><i class="fa fa-plus"></i></span>
           {% else %}
-            <span class="open-menu collapsed" data-toggle="collapse" data-target="#{{ id }}"><i class="fa fa-plus"></i></span>
+            <span class="open-menu collapsed" data-toggle="collapse" data-target="#{{ id }}" role="heading"><i class="fa fa-plus"></i></span>
           {% endif %}
         {% endif %}
       </a>
@@ -18,15 +18,15 @@
         {{ j3.countBadge(item.title, item.link.total, item.link.classes) }}
         {% if item.items %}
           {% if item.isOpen %}
-            <span class="open-menu" data-toggle="collapse" data-target="#{{ id }}" aria-expanded="true"><i class="fa fa-plus"></i></span>
+            <span class="open-menu" data-toggle="collapse" data-target="#{{ id }}" aria-expanded="true" role="heading"><i class="fa fa-plus"></i></span>
           {% else %}
-            <span class="open-menu collapsed" data-toggle="collapse" data-target="#{{ id }}"><i class="fa fa-plus"></i></span>
+            <span class="open-menu collapsed" data-toggle="collapse" data-target="#{{ id }}" role="heading"><i class="fa fa-plus"></i></span>
           {% endif %}
         {% endif %}
       </a>
     {% endif %}
     {% if item.items %}
-      <div class="collapse {% if item.isOpen %}in{% endif %}" id="{{ id }}" {% if item.isOpen %}aria-expanded="true"{% endif %}>
+      <div class="collapse {% if item.isOpen %}in{% endif %}" id="{{ id }}">
         <ul class="j-menu">
           {% for subitem in item.items %}
             {{ self.renderAccordionMenu(j3, subitem) }}
