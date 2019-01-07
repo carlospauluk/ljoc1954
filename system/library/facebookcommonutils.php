@@ -198,7 +198,7 @@ class FacebookCommonUtils {
     // this is to allow reuse of existing codes instead of
     // duplicating the same to both catalog and admin folder
     require_once
-      DIR_APPLICATION . "../admin/controller/extension/facebookproduct.php";
+      DIR_APPLICATION . "../mgm1954/controller/extension/facebookproduct.php";
     $product_ids =
       array_unique(
         array_map(function($product) { return $product['product_id'];},
