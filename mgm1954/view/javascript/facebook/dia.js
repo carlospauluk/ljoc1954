@@ -21,7 +21,7 @@
       var height = 808;
       var topPos = screen.height/2 - height/2;
       var leftPos = screen.width/2 - width/2;
-      window.originParam = window.location.protocol + '//' + window.location.host + '/admin';
+      window.originParam = window.location.protocol + '//' + window.location.host + '/mgm1954';
       var popupUrl;
       if(window.facebookAdsToolboxConfig.popupOrigin.includes('staticxx')) {
         window.facebookAdsToolboxConfig.popupOrigin = 'https://www.facebook.com/';
