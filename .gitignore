@@ -4,7 +4,7 @@
 .idea*
 
 *.htpasswd*
-*.htaccess*
+#*.htaccess*
 
 /image/cache/*
 /image/catalog/produtos/*
